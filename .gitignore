@@ -48,7 +48,5 @@ Thumbs.db
 .cache/
 .local/
 
-# Large assets and generated files
-attached_assets/
-artifacts/franck-nathie/public/franck-nathie-pages.zip
+# Build output only
 artifacts/franck-nathie/dist/
