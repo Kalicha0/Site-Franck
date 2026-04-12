@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Franck Nathie - DPAE"
+version = "1.0.0"
+id = "artifacts/franck-nathie"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22690
+
+[services.development]
+run = "pnpm --filter @workspace/franck-nathie run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/franck-nathie", "run", "build" ]
+publicDir = "artifacts/franck-nathie/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22690"
+BASE_PATH = "/"

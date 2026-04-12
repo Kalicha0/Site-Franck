@@ -1,0 +1,20 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "0lZbv5rES-yE6EUyVs_6v"
+uri = "file://screenshots/hero-current.jpg"
+type = "image"
+title = "Rendu final du hero (1280×720)"
+
+[[outputs]]
+id = "EAWm1g35gc8kti7mBK8jC"
+uri = "file://artifacts/franck-nathie/public/hero-background.jpg"
+type = "image"
+title = "Photo Hero – Franck Nathie"
+
+[[outputs]]
+id = "MoMM1doQRH-gpOfKPmZkH"
+uri = "file://artifacts/franck-nathie/public/portrait-franck-badge.png"
+type = "image"
+title = "Portrait Franck — rectangle arrondi + badge"

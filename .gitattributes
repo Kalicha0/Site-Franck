@@ -1,0 +1,6 @@
+artifacts/franck-nathie/public/franck-nathie-pages.zip filter=lfs diff=lfs merge=lfs -text
+artifacts/franck-nathie/public/accueil.html filter=lfs diff=lfs merge=lfs -text
+artifacts/franck-nathie/public/article-blessures.html filter=lfs diff=lfs merge=lfs -text
+artifacts/franck-nathie/public/la-dpec.html filter=lfs diff=lfs merge=lfs -text
+artifacts/franck-nathie/public/qui-suis-je.html filter=lfs diff=lfs merge=lfs -text
+artifacts/franck-nathie/public/section-7-moi-vs-soi.html filter=lfs diff=lfs merge=lfs -text
