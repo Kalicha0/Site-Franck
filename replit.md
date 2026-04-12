@@ -124,8 +124,8 @@ workspace/
 ### Typographie
 - **Police principale** : `Atma` (Google Fonts) — utilisée pour tous les titres et le logo
 - **Police texte** : système (sans-serif par défaut de Tailwind)
-- Charger via `index.html` : `<link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&display=swap">`
-- En CSS : `fontFamily: "Atma, sans-serif"` (inline sur les éléments titres)
+- Chargée via `index.html` : `<link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&display=swap">`
+- En CSS inline : `fontFamily: "Atma, sans-serif"` sur les éléments titres
 
 ### Alias Vite pour les images
 ```typescript
@@ -189,9 +189,9 @@ Le routing est géré par **Wouter** dans `App.tsx`.
 | `/boutique` | `ShopPage.tsx` | ✅ Live |
 | `/boutique/:sub` | `ProductPage.tsx` | ✅ Live |
 | `/coming-soon` | `ComingSoon.tsx` | ✅ Placeholder |
-| `/articles/karpman` | → `/coming-soon` | 🔜 À créer |
-| `/articles/soi-moi` | → `/coming-soon` | 🔜 À créer |
-| etc. | → `/coming-soon` | 🔜 À créer |
+| `/articles/karpman` | → `/coming-soon` | À créer |
+| `/articles/soi-moi` | → `/coming-soon` | À créer |
+| etc. | → `/coming-soon` | À créer |
 
 ### Routes actives dans le Navbar (LIVE_ROUTES)
 Dans `Navbar.tsx`, la constante `LIVE_ROUTES` liste toutes les routes "vivantes". Les liens dropdown qui ne sont PAS dans cette liste redirigent vers `/coming-soon`. Mettre à jour cette liste quand une nouvelle page est créée.
@@ -204,13 +204,132 @@ const LIVE_ROUTES = new Set([
   "/boutique",
   "/boutique/stage-guerison",
   "/boutique/stage-capt",
-  // ... etc
+  "/boutique/therapie-ligne",
+  "/boutique/jeu-gai-rire",
+  "/boutique/jeu-cartes",
+  "/boutique/poster-gai-rire",
+  "/boutique/poster-capt",
 ]);
 ```
 
 ---
 
-## 8. La Boutique — architecture
+## 8. Images — guide complet de placement
+
+> **Information critique** : Les images sont importées directement par leur nom de fichier exact dans le code. Elles **n'ont pas besoin d'être replacées manuellement** — tant que le dossier `attached_assets/` est présent (il l'est via Git LFS), tout se reconstituera automatiquement. Ce guide sert uniquement de référence en cas de problème ou d'image manquante.
+
+### Comment les images sont utilisées dans le code
+```tsx
+// Exemple dans Hero.tsx
+import heroBg from "@assets/franck-background-section-hero-accueil-_1774981141061.jpg";
+
+// Puis dans le JSX :
+<img src={heroBg} alt="Franck Nathie" />
+```
+
+L'alias `@assets` pointe vers `../../attached_assets` (configuré dans `vite.config.ts`).
+
+### Mapping complet : image → fichier → rôle visuel
+
+#### `Hero.tsx` — Section hero de la page d'accueil
+| Fichier image | Rôle |
+|---|---|
+| `franck-background-section-hero-accueil-_1774981141061.jpg` | Photo de Franck en arrière-plan du hero |
+
+#### `QuiSuisJe.tsx` — Page "Qui suis-je ?"
+| Fichier image | Rôle |
+|---|---|
+| `trombine_franck_rt_1775432409703.jpg` | Portrait de Franck (colonne gauche) |
+| `LIONNEL_ET_FRANCK_3_1775432412430.jpg` | Franck et Lionel Santucci |
+
+#### `WhyTherapy.tsx` — Section "Pourquoi une thérapie ?"
+| Fichier image | Rôle |
+|---|---|
+| `les_parts_éxilé_-_l_enfant_onfuse_rg_1774979777268.png` | Illustration de l'enfant blessé |
+
+#### `InnerWound.tsx` — Section "La blessure intérieure"
+| Fichier image | Rôle |
+|---|---|
+| `2_les_blessures_-_Rejet_1774979777263.png` | Illustration blessure Rejet |
+| `les_parts_exilé_blessé_-la_violé2_1774979777259.png` | Illustration part blessée |
+| `6_les_blessures_-_Humiliation_1774979777264.png` | Illustration blessure Humiliation |
+
+#### `HealingProcess.tsx` — Section "Comment guérir ?"
+| Fichier image | Rôle |
+|---|---|
+| `Les_parts_3_types_porte_textes_remis_dans_l'ordre_1775503205057.jpg` | Schéma des 3 types de parts |
+| `@_3_les_parts_exilés_blessés_-_double_BD_1775504573602.png` | Parts exilées (double) |
+| `les_parts_déchargés_-_le_nettoyeur_rangeur_1775504625005.png` | Part déchargée : le nettoyeur |
+| `unnamed_1775504758913.png` | Illustration processus d'apprentissage |
+| `les_parts_déchargés_-Force_fragile_3_1_1775504947580.png` | Part : force fragile |
+
+#### `DPAETherapy.tsx` — Section "La thérapie DPEC"
+| Fichier image | Rôle |
+|---|---|
+| `Le_SOI__1775478214163.png` | Schéma du SOI |
+| `Les_part_fuyantes_La_pleureuse_2_1774979777255.png` | Part fuyante : la pleureuse |
+| `les_parts_blessée_exilée_La_faible_couleurs_1775431161969.jpg` | Part exilée : la faible |
+| `les_parts_déchargés_-_le_sportif_1_1774979777258.png` | Part déchargée : le sportif |
+| `Les_parts_libérés_png_1775430316909.png` | Parts libérées |
+| `les_parts_déchargés_-_l_humble_1775431264481.png` | Part déchargée : l'humble |
+| `Les_parts_-_Déchargés_2_1774979777256.png` | Parts déchargées (schéma 2) |
+
+#### `TransitionIllustration.tsx` — Section de transition
+| Fichier image | Rôle |
+|---|---|
+| `les_parts_déchargés_-_Le_créatif_constructif_rg_rond_1774979777267.png` | Le créatif constructif |
+
+#### `MoiVsSoi.tsx` — Section "Moi vs Soi"
+| Fichier image | Rôle |
+|---|---|
+| `@_Le_MOI__1774979777262.png` | Schéma du MOI |
+| `Le_SOI__1775654510532.png` | Schéma du SOI |
+| `Le_moi_et_attitude_1775654363666.png` | Le MOI et ses attitudes |
+| `Le_soi_et_attitude_1775654378772.png` | Le SOI et ses attitudes |
+| `illustration-bébé_1775654741743.png` | Illustration bébé |
+| `@_1_BESOINS_1775654787992.png` | Schéma des besoins fondamentaux |
+| `les_parts_déchargés_-_la_boussole_interne_1775654811628.png` | La boussole interne |
+
+#### `ArticlesPreview.tsx` — Section aperçu articles (page d'accueil)
+| Fichier image | Rôle |
+|---|---|
+| `2_les_blessures_-_Rejet_1774979777263.png` | Miniature article blessures |
+| `3_les_blessures_-_Trahison_1775438236274.png` | Miniature article blessures |
+| `6_les_blessures_-_Humiliation_1774979777264.png` | Miniature article blessures |
+| `les_parts_exilés_blessés_-_double_1774979777251.png` | Miniature parts |
+| `illustration-bébé_1775654741743.png` | Miniature bébé |
+| `5d270f42-8428-4ad4-b463-a77c708d9412_1775654492208.png` | Miniature article |
+| `@_3_les_parts_exilés_blessés_-_double_BD_1775504573602.png` | Miniature parts BD |
+
+#### `ArticleBlessures.tsx` — Page article "12 blessures existentielles"
+| Fichier image | Rôle |
+|---|---|
+| `2_les_blessures_-_Rejet_1774979777263.png` | Illustration blessure Rejet |
+| `3_les_blessures_-_Trahison_1775438236274.png` | Illustration blessure Trahison |
+| `4_les_blessures_-_Injustice_1775438282630.png` | Illustration blessure Injustice |
+| `6_les_blessures_-_Humiliation_1774979777264.png` | Illustration blessure Humiliation |
+| `7_les_blessures_-_Incompréhension_1775438719199.png` | Illustration blessure Incompréhension |
+| `unnamed_1775438880888.png` | Illustration blessures existentielles |
+| `unnamed_(1)_1775439128995.png` | Illustration croissance |
+| `les_parts_exilé_blessé_-la_violé2_1775438408517.png` | Illustration part violée |
+
+### Images présentes dans `attached_assets/` mais non encore utilisées dans le code
+Ces images appartiennent à Franck et sont disponibles pour de futures pages :
+- `Le_SOI_valeur_(2)_1774979777254.png`
+- `le_self_1774979777265.png`, `le_self_3_1774979777253.jpg`
+- `richard_schwartz_2_1774979777262.jpg`
+- `triangle-karpman_1774979777252.png`, `triangle-karpman_-_Copie_1774979777261.jpg`
+- `les_parts_déchargés_-_l_amoureux_libre_1774979777266.png`
+- `les_parts_libérés_png_1774979777260.png`
+- `Les_parts_libérés_png_1775430316909.png`
+- `les_parts_exilés_blessés_-_double_1774979777251.png`
+- `franck-background-section-hero-accueil_1774977116005.avif` (version avif du hero, non utilisée)
+- `section-hero-page-accueil_*.jpg` (versions alternatives du hero)
+- Tous les fichiers `.txt` et `.pdf` → contenu source fourni par Franck pour les textes du site
+
+---
+
+## 9. La Boutique — architecture
 
 ### Fichier de données : `src/data/products.ts`
 
@@ -227,7 +346,7 @@ type Product = {
   image: string;              // URL de l'image (vide "" si pas encore d'image)
   descriptionCourte: string;  // 1-2 phrases
   descriptionLongue: string[];// Plusieurs paragraphes
-  pourQui: string[];          // Liste de bullet points "Ce produit est fait pour vous si..."
+  pourQui: string[];          // Liste "Ce produit est fait pour vous si..."
   produitsSimilaires: string[];// Slugs des produits liés
 };
 ```
@@ -251,7 +370,7 @@ Les 7 slugs : `stage-guerison`, `stage-capt`, `therapie-ligne`, `jeu-gai-rire`, 
 
 ---
 
-## 9. Composants de layout
+## 10. Composants de layout
 
 ### TopBar (`TopBar.tsx`)
 Barre orange tout en haut. Contient :
@@ -273,69 +392,18 @@ Barre orange tout en haut. Contient :
 
 ---
 
-## 10. Captures de référence — ce à quoi doit ressembler chaque page
+## 11. Captures de référence — ce à quoi doit ressembler chaque page
 
-Après avoir reconstitué le projet, prends un screenshot de chaque page et compare avec les images dans `screenshots/`. Les pages doivent correspondre visuellement.
+Après avoir reconstitué le projet, prends un screenshot de chaque page et compare avec les images dans `screenshots/`.
 
-### Page d'accueil (`/`)
-- **Fichier référence** : `screenshots/page-accueil.jpg`
-- TopBar orange en haut avec tél + email
-- Navbar blanche avec logo "Franck Nathie" et liens de navigation
-- Hero : photo de Franck en fond, titre "Déprogrammation Psycho-Émotionnelle et Comportementale" avec D/P/C en orange, sous-titre "Retrouvez la liberté d'être vous-même"
-- Boutons : "Découvrir la thérapie DPEC" (orange) + "Prendre contact" (transparent bordé)
-- Puis plusieurs sections qui se succèdent (WhyTherapy, InnerWound, HealingProcess, etc.)
-
-### Page "Qui suis-je ?" (`/qui-suis-je`)
-- **Fichier référence** : `screenshots/page-qui-suis-je.jpg`
-- Hero orange avec titre "Qui suis-je ?"
-- Layout 2 colonnes : photo de Franck à gauche, texte biographique à droite
-- Texte de Franck tel quel, non reformulé
-
-### Page "La DPEC c'est quoi ?" (`/dpae`)
-- **Fichier référence** : `screenshots/page-dpec.jpg`
-- Hero orange avec titre "La DPEC, c'est quoi ?"
-- Sections expliquant l'origine, les composantes, la méthode
-
-### Page Boutique (`/boutique`)
-- **Fichier référence** : `screenshots/page-boutique.jpg`
-- Hero crème `#f0ede8` avec badge "NOS RESSOURCES THÉRAPEUTIQUES" et titre "La Boutique"
-- Pills de filtre : Tous / Stages / Thérapie / Jeux / Posters
-- Grille de cartes produit avec fond crème pour les images, badges orange pour les catégories
-
-### Page produit (`/boutique/stage-guerison` par exemple)
-- **Fichier référence** : `screenshots/page-produit.jpg`
-- Breadcrumb orange
-- Image placeholder crème avec "IMAGE À VENIR"
-- Badge catégorie, titre, étoiles, prix en orange
-- Boutons sans emoji : "Ajouter au panier" et "Contacter Franck"
-- Onglets avec indicateur coulissant orange
-
-### Article "12 blessures" (`/articles/blessures`)
-- **Fichier référence** : `screenshots/page-article-blessures.jpg`
-- Hero orange avec titre "Les 12 blessures existentielles"
-- Contenu riche avec images illustrant les blessures
-
----
-
-## 11. Images et assets
-
-### Où sont les images
-Toutes les images fournies par Franck sont dans `attached_assets/`. Elles sont trackées via **Git LFS**.
-
-### Comment utiliser une image dans le code
-```tsx
-import monImage from "@assets/nom-exact-du-fichier.png";
-// puis dans le JSX :
-<img src={monImage} alt="description" />
-```
-
-### Images clés connues
-- `franck-background-section-hero-accueil-_1774981141061.jpg` → Photo hero page d'accueil
-- `trombine_franck_rt_1775432409703.jpg` → Portrait Franck (page Qui suis-je)
-- `LIONNEL_ET_FRANCK_3_1775432412430.jpg` → Franck et Lionel Santucci
-- `triangle-karpman_1774979777252.png` → Triangle de Karpman (article)
-- Les images `les_blessures_*` → Illustrations des blessures existentielles
-- Les images `les_parts_*` → Schémas des "parts" (Moi/Soi)
+| Page | URL | Fichier référence |
+|------|-----|------------------|
+| Accueil | `/` | `screenshots/page-accueil.jpg` |
+| Qui suis-je | `/qui-suis-je` | `screenshots/page-qui-suis-je.jpg` |
+| La DPEC c'est quoi | `/dpae` | `screenshots/page-dpec.jpg` |
+| Boutique | `/boutique` | `screenshots/page-boutique.jpg` |
+| Page produit | `/boutique/stage-guerison` | `screenshots/page-produit.jpg` |
+| Article blessures | `/articles/blessures` | `screenshots/page-article-blessures.jpg` |
 
 ---
 
@@ -347,13 +415,13 @@ import monImage from "@assets/nom-exact-du-fichier.png";
 
 3. **Ne pas utiliser des backgrounds colorés par catégorie** pour les placeholders d'image produit. Utiliser toujours le fond crème `#f0ede8`.
 
-4. **Ne pas oublier de mettre à jour `LIVE_ROUTES` dans Navbar.tsx** quand une nouvelle page est créée, sinon ses liens redirigent vers `/coming-soon`.
+4. **Ne pas oublier de mettre à jour `LIVE_ROUTES` dans `Navbar.tsx`** quand une nouvelle page est créée, sinon ses liens redirigent vers `/coming-soon`.
 
 5. **Ne pas oublier de mettre à jour les liens du Footer** quand une nouvelle page est créée (`footerLinks` dans `Footer.tsx`).
 
 6. **Ne jamais reformuler le texte de Franck**, même si ça semble "mieux écrit". C'est une règle non négociable.
 
-7. **Toujours régénérer le ZIP** après chaque modification du site (sinon le ZIP téléchargeable est obsolète).
+7. **Toujours régénérer le ZIP** après chaque modification du site.
 
 8. **Le champ `image` dans les produits** doit exister sur tous les produits (même vide `""`). Sans ce champ, TypeScript rejette le build.
 
@@ -378,32 +446,16 @@ node scripts/capture-html-pages.mjs
 # Installer chromium et zip si absents (après reset environnement)
 nix-env -iA nixpkgs.chromium nixpkgs.zip
 
-# Pousser vers GitHub (token nécessaire)
-git push https://USERNAME:TOKEN@github.com/Kalicha0/Site-Franck.git HEAD:main
+# Pousser vers GitHub
+git checkout fresh-start
+git add .
+git commit -m "message"
+git push https://USERNAME:TOKEN@github.com/Kalicha0/Site-Franck.git fresh-start:main
 ```
 
 ---
 
-## 14. Monorepo — informations générales
-
-```text
-workspace/
-├── artifacts/              ← Applications déployables
-│   ├── franck-nathie/      ← LE SITE
-│   └── api-server/         ← Serveur Express (pas utilisé pour le site front)
-├── lib/                    ← Librairies partagées (API, DB, etc.)
-├── scripts/                ← Scripts utilitaires
-└── pnpm-workspace.yaml
-```
-
-Chaque package a son propre `package.json`. Les dépendances inter-packages sont gérées par pnpm workspaces. Ne jamais installer des dépendances à la racine sans raison — toujours dans le package concerné :
-```bash
-pnpm --filter @workspace/franck-nathie add nom-du-package
-```
-
----
-
-## 15. Contact du client
+## 14. Contact du client
 
 - **Nom** : Franck Nathie
 - **Email** : Contact@Franck-Nathie.com
@@ -414,7 +466,7 @@ pnpm --filter @workspace/franck-nathie add nom-du-package
 
 ---
 
-## 16. Ce qui reste à faire (pages non encore créées)
+## 15. Ce qui reste à faire
 
 Les liens suivants redirigent pour l'instant vers `/coming-soon` :
 - `/articles/karpman` — Trilogie de Karpman
@@ -424,8 +476,8 @@ Les liens suivants redirigent pour l'instant vers `/coming-soon` :
 - `/articles/parts-protectrices` — Les parts protectrices
 - `/articles/communication` — La communication Transformative
 
-La boutique est fonctionnelle mais les images produit (`image: ""`) sont encore vides — Franck doit fournir les photos de ses produits.
+La boutique est fonctionnelle mais les images produit (`image: ""`) sont encore vides — Franck doit fournir les photos de ses produits réels.
 
 ---
 
-*Ce fichier a été rédigé le 12 avril 2026 pour permettre la continuité du projet sur un nouveau compte Replit.*
+*Rédigé le 12 avril 2026 — projet transféré vers GitHub : `github.com/Kalicha0/Site-Franck`*
