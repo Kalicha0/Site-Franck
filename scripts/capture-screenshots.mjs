@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const SCREENSHOTS_DIR = resolve(ROOT, 'screenshots');
 
-const DEV_URL = 'http://localhost:22690';
+const DEV_URL = 'http://localhost:80';
 
 const PAGES = [
   { route: '/',                       filename: 'page-accueil.jpg',          label: 'Accueil' },
@@ -33,14 +33,22 @@ for (const page of PAGES) {
   const p = await context.newPage();
   console.log(`📸 Capture pleine page : ${page.label} (${page.route})`);
   try {
-    await p.goto(`${DEV_URL}${page.route}`, { waitUntil: 'networkidle', timeout: 30000 });
-    // Attendre que les images et polices soient chargées
-    await p.waitForTimeout(2000);
-    // Scroll pour déclencher les animations
+    await p.goto(`${DEV_URL}${page.route}`, { waitUntil: 'networkidle', timeout: 45000 });
+    // Attendre que les polices Google (Atma) et les images soient chargées
+    await p.waitForTimeout(3000);
+    // Forcer le chargement de toutes les images (lazy load)
+    await p.evaluate(async () => {
+      const imgs = document.querySelectorAll('img');
+      await Promise.all(Array.from(imgs).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => { img.onload = img.onerror = res; });
+      }));
+    });
+    // Scroll complet pour déclencher les sections animées
     await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await p.waitForTimeout(1000);
+    await p.waitForTimeout(1500);
     await p.evaluate(() => window.scrollTo(0, 0));
-    await p.waitForTimeout(500);
+    await p.waitForTimeout(800);
     // Capture pleine page
     await p.screenshot({
       path: resolve(SCREENSHOTS_DIR, page.filename),

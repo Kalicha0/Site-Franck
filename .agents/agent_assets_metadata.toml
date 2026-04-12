@@ -18,3 +18,45 @@ id = "MoMM1doQRH-gpOfKPmZkH"
 uri = "file://artifacts/franck-nathie/public/portrait-franck-badge.png"
 type = "image"
 title = "Portrait Franck — rectangle arrondi + badge"
+
+[[outputs]]
+id = "GMDgu4UlpTFHVJyFNj2Th"
+uri = "file://screenshots/page-accueil.jpg"
+type = "image"
+title = "Page Accueil — capture pleine page"
+
+[[outputs]]
+id = "jIA1o7f0sZl7C5z_VFZga"
+uri = "file://screenshots/page-boutique.jpg"
+type = "image"
+title = "Page Boutique — capture pleine page"
+
+[[outputs]]
+id = "76BG0q9FBAB70WE4I7mrs"
+uri = "file://screenshots/page-produit-stage.jpg"
+type = "image"
+title = "Page Produit Stage — capture pleine page"
+
+[[outputs]]
+id = "Og-q-cW4NLlxvWP65w3Kb"
+uri = "file://screenshots/page-qui-suis-je.jpg"
+type = "image"
+title = "Page Qui suis-je"
+
+[[outputs]]
+id = "Pdx82g7Zbn15pfvkhet6e"
+uri = "file://screenshots/page-dpec.jpg"
+type = "image"
+title = "Page La DPEC c'est quoi"
+
+[[outputs]]
+id = "e7Bm9B424fIwzNs6djdwd"
+uri = "file://screenshots/page-produit-jeu.jpg"
+type = "image"
+title = "Page Produit Jeu Gai-Rire"
+
+[[outputs]]
+id = "xoSb2NmiOFuf25JSgDv6k"
+uri = "file://screenshots/page-article-blessures.jpg"
+type = "image"
+title = "Page Article 12 blessures"
