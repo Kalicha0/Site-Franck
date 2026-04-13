@@ -650,18 +650,27 @@ function ContenuFormationSection({ product }: { product: Product }) {
   );
 }
 
-/* SECTION 7 — ÉCHEC DE LA PSYCHANALYSE (Thérapie) */
+/* SECTION 7 — ÉCHEC DE LA PSYCHANALYSE (Thérapie)
+   bg: C1 (blanc) pour alterner avec les sections C2 autour
+   Texte structuré : premier paragraphe en introduction mise en avant, reste en body
+*/
 function EchecSection({ product }: { product: Product }) {
   if (!product.echeTexte?.length) return null;
+  const [intro, ...rest] = product.echeTexte;
   return (
-    <section style={{ background: C2, padding: "70px 0" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+    <section style={{ background: C1, padding: "70px 0", borderTop: `1px solid ${C3}` }}>
+      <div style={{ maxWidth: "840px", margin: "0 auto", padding: "0 40px" }}>
         <H2Orig>L'échec de la psychanalyse et de beaucoup de thérapie</H2Orig>
-        <div style={{ columns: 2, columnGap: "48px", display: "block" }}>
-          {product.echeTexte.map((para, i) => (
-            <p key={i} style={{ fontSize: "13px", color: MID, lineHeight: 1.8, marginBottom: "14px", breakInside: "avoid" }}>
-              {para}
-            </p>
+        {/* Premier paragraphe mis en valeur */}
+        {intro && (
+          <div style={{ background: C2, borderLeft: `4px solid ${ORA}`, borderRadius: "0 6px 6px 0", padding: "20px 24px", marginBottom: "28px" }}>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: C8, lineHeight: 1.75, margin: 0 }}>{intro}</p>
+          </div>
+        )}
+        {/* Reste du texte */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+          {rest.map((para, i) => (
+            <p key={i} style={{ fontSize: "14px", color: MID, lineHeight: 1.85, margin: 0 }}>{para}</p>
           ))}
         </div>
       </div>
@@ -671,7 +680,7 @@ function EchecSection({ product }: { product: Product }) {
 
 /* SECTION 8 — TÉMOIGNAGES
    bg: #f0eee5 (crème)
-   Cards : bg crème + bordure #dfddd2
+   Cards : bg blanc + ombre légère pour ressortir sur le fond crème
 */
 function TemoignagesSection({ slug }: { slug: string }) {
   const list = TEMOIGNAGES[slug] ?? [];
@@ -683,9 +692,12 @@ function TemoignagesSection({ slug }: { slug: string }) {
         <div style={{ display: "grid", gridTemplateColumns: list.length === 1 ? "1fr" : "repeat(2, 1fr)", gap: "24px" }}>
           {list.map((t, i) => (
             <div key={i} style={{
-              background: C2, border: `1px solid ${C3}`, borderRadius: "6px",
+              background: C1, border: `1px solid ${C3}`, borderRadius: "8px",
               padding: "28px 28px 24px", display: "flex", flexDirection: "column", gap: "14px",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
             }}>
+              {/* Accent orange en haut */}
+              <div style={{ width: "36px", height: "3px", background: ORA, borderRadius: "2px" }} />
               {/* Étoiles */}
               <div style={{ display: "flex", gap: "2px" }}>
                 {[1,2,3,4,5].map(s => <StarFill key={s} />)}
@@ -695,7 +707,7 @@ function TemoignagesSection({ slug }: { slug: string }) {
                 « {t.texte} »
               </p>
               {/* Auteur */}
-              <p style={{ fontSize: "12px", fontWeight: 700, color: C8, margin: 0, paddingTop: "12px", borderTop: `1px solid ${C3}` }}>
+              <p style={{ fontSize: "12px", fontWeight: 700, color: ORA, margin: 0, paddingTop: "12px", borderTop: `1px solid ${C3}` }}>
                 — {t.auteur}
               </p>
             </div>
@@ -706,18 +718,42 @@ function TemoignagesSection({ slug }: { slug: string }) {
   );
 }
 
-/* SECTION — Description longue (Jeux / Posters) */
+/* SECTION — Description longue (Jeux / Posters)
+   Structure : intro C2 (crème) + corps C1 (blanc) pour créer un rythme visuel
+*/
 function DescriptionSection({ product }: { product: Product }) {
+  const [intro, ...rest] = product.descriptionLongue;
+  const hasRest = rest.length > 0;
+
   return (
-    <section style={{ background: C1, padding: "60px 0", borderTop: `1px solid ${C3}` }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-          {product.descriptionLongue.map((para, i) => (
-            <p key={i} style={{ fontSize: "14px", color: MID, lineHeight: 1.8, margin: 0, whiteSpace: "pre-line" }}>{para}</p>
-          ))}
-        </div>
-      </div>
-    </section>
+    <>
+      {/* Bloc intro — fond crème */}
+      {intro && (
+        <section style={{ background: C2, padding: "60px 0" }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+              <div style={{ flexShrink: 0, width: "4px", borderRadius: "2px", background: ORA, alignSelf: "stretch", minHeight: "24px" }} />
+              <p style={{ fontSize: "17px", fontWeight: 600, color: C8, lineHeight: 1.75, margin: 0, whiteSpace: "pre-line" }}>
+                {intro}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Reste du contenu — fond blanc */}
+      {hasRest && (
+        <section style={{ background: C1, padding: "50px 0 64px", borderTop: `1px solid ${C3}` }}>
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 40px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {rest.map((para, i) => (
+                <p key={i} style={{ fontSize: "14px", color: MID, lineHeight: 1.85, margin: 0, whiteSpace: "pre-line" }}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 
@@ -850,7 +886,7 @@ export default function ProductPage() {
 
       {/* ── PRODUITS SIMILAIRES ── */}
       {related.length > 0 && (
-        <section style={{ background: C1, padding: "60px 0", borderTop: `1px solid ${C3}` }}>
+        <section style={{ background: C2, padding: "60px 0", borderTop: `1px solid ${C3}` }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
             <H2Orig>Vous aimerez aussi</H2Orig>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
