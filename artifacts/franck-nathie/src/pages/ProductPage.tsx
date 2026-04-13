@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useParams } from "wouter";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import type { Product } from "@/data/products";
@@ -40,6 +40,10 @@ function StarRating({ count = 5 }: { count?: number }) {
 function ProductGallery({ product }: { product: Product }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const images = product.images;
+
+  useEffect(() => {
+    setActiveIdx(0);
+  }, [product.slug]);
 
   if (images.length === 0) {
     return (
