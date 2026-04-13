@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
+import { Lock, RefreshCcw, Package, Heart, Calendar, MessageCircle, Video } from "lucide-react";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import type { Product } from "@/data/products";
 import NotFound from "@/pages/not-found";
@@ -29,6 +30,49 @@ const MID = "#555555";
 const BG_HERO_PARALLAX   = "https://laforetnourriciere.org/wp-content/uploads/2023/04/calendrier-jardin-foret.jpg";
 const BG_STAGE_BANNER    = "https://laforetnourriciere.org/wp-content/uploads/2019/07/P1210349-scaled.jpg";
 const BG_LES_PARTS       = "https://laforetnourriciere.org/wp-content/uploads/2023/07/Les-parts-Decharges.png";
+
+/* ══ BADGES DE CONFIANCE ══
+   Adaptés selon la nature du produit :
+   - jeux/posters (livrables physiques) : icônes exactes du screenshot
+   - stages : pas de livraison, pas de satisfait ou remboursé → remplacés
+   - therapie : pas de livraison → remplacé par visio + accompagnement
+*/
+const TRUST_BADGES: Record<string, { icon: React.ReactNode; label: string }[]> = {
+  jeux: [
+    { icon: <Lock size={14} />,       label: "Sécurisé" },
+    { icon: <RefreshCcw size={14} />, label: "Satisfait ou remboursé" },
+    { icon: <Package size={14} />,    label: "Livraison soignée" },
+  ],
+  posters: [
+    { icon: <Lock size={14} />,       label: "Sécurisé" },
+    { icon: <RefreshCcw size={14} />, label: "Satisfait ou remboursé" },
+    { icon: <Package size={14} />,    label: "Livraison soignée" },
+  ],
+  stages: [
+    { icon: <Lock size={14} />,        label: "Paiement sécurisé" },
+    { icon: <Heart size={14} />,       label: "Bienveillance garantie" },
+    { icon: <Calendar size={14} />,    label: "Dates flexibles" },
+  ],
+  therapie: [
+    { icon: <Lock size={14} />,           label: "Paiement sécurisé" },
+    { icon: <MessageCircle size={14} />,  label: "Accompagnement personnalisé" },
+    { icon: <Video size={14} />,          label: "Séance en visio" },
+  ],
+};
+
+function TrustBadges({ categorie }: { categorie: string }) {
+  const badges = TRUST_BADGES[categorie] ?? TRUST_BADGES["jeux"];
+  return (
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", paddingTop: "4px" }}>
+      {badges.map((b, i) => (
+        <span key={i} style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "12px", color: MID }}>
+          <span style={{ color: ORA, display: "flex", alignItems: "center" }}>{b.icon}</span>
+          {b.label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 /* ─── Textes formateur (constants partagées) ─── */
 const FORMATEUR_BIO = [
@@ -300,6 +344,9 @@ function ProductInfoPanel({ product }: { product: Product }) {
           </p>
         )}
       </div>
+
+      {/* Badges de confiance — adaptés selon la catégorie */}
+      <TrustBadges categorie={product.categorie} />
     </div>
   );
 }
@@ -923,18 +970,8 @@ function SimpleProductPage({ product, related, slug }: {
               >
                 Contacter Franck
               </a>
-              {/* Badges de confiance */}
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", paddingTop: "4px" }}>
-                {[
-                  { icon: "🔒", label: "Sécurisé" },
-                  { icon: "✓", label: "Satisfait ou remboursé" },
-                  { icon: "⭕", label: "Livraison soignée" },
-                ].map((b) => (
-                  <span key={b.label} style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "12px", color: MID }}>
-                    <span style={{ fontSize: "13px" }}>{b.icon}</span> {b.label}
-                  </span>
-                ))}
-              </div>
+              {/* Badges de confiance — adaptés selon la catégorie */}
+              <TrustBadges categorie={product.categorie} />
             </div>
           </div>
         </div>
