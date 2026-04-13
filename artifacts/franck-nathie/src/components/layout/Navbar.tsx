@@ -1,6 +1,33 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Search } from "lucide-react";
+import { products } from "@/data/products";
+
+const ORA = "#cc6633";
+const CREAM = "#f0eee5";
+
+function normalizeStr(s: string) {
+  return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function getResults(query: string) {
+  const q = normalizeStr(query.trim());
+  if (!q) return [];
+  return products
+    .filter(
+      (p) =>
+        normalizeStr(p.titre).includes(q) ||
+        normalizeStr(p.descriptionCourte).includes(q)
+    )
+    .slice(0, 5);
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  stages: "Stage",
+  therapie: "Thérapie",
+  jeux: "Jeu",
+  posters: "Poster",
+};
 
 const navItems = [
   { label: "Accueil", href: "/" },
@@ -75,11 +102,14 @@ function DropdownMenu({ items }: { items: { label: string; href: string }[] }) {
 }
 
 export default function Navbar() {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const navRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -91,11 +121,48 @@ export default function Navbar() {
     const handleClickOutside = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setOpenDropdown(null);
+        setSearchOpen(false);
+        setSearchQuery("");
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50);
+    }
+  }, [searchOpen]);
+
+  const results = getResults(searchQuery);
+  const hasQuery = searchQuery.trim().length > 0;
+
+  function handleResultClick(slug: string) {
+    setSearchOpen(false);
+    setSearchQuery("");
+    setMobileOpen(false);
+    navigate(`/boutique/${slug}`);
+  }
+
+  function toggleSearch() {
+    setSearchOpen((o) => {
+      if (o) setSearchQuery("");
+      return !o;
+    });
+    setOpenDropdown(null);
+  }
 
   return (
     <nav
@@ -166,8 +233,73 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Right zone: Search + CTA */}
+          <div className="hidden lg:flex items-center gap-2">
+            {/* Search zone */}
+            <div className="relative flex items-center">
+              {/* Expandable input */}
+              <div
+                className="overflow-hidden transition-all duration-300 ease-in-out"
+                style={{ width: searchOpen ? "220px" : "0px", opacity: searchOpen ? 1 : 0 }}
+              >
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Rechercher un produit…"
+                  className="w-full border rounded-lg px-3 py-1.5 text-sm text-gray-700 outline-none"
+                  style={{ borderColor: ORA, background: CREAM }}
+                  aria-label="Rechercher un produit"
+                />
+              </div>
+
+              {/* Loupe / X icon */}
+              <button
+                onClick={toggleSearch}
+                className="ml-1 p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#cc6633] transition-colors"
+                aria-label={searchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+              >
+                {searchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
+              </button>
+
+              {/* Dropdown résultats */}
+              {searchOpen && hasQuery && (
+                <div
+                  className="absolute top-full right-0 mt-1 bg-white shadow-lg rounded-lg border border-gray-100 py-1 z-50"
+                  style={{ minWidth: "280px" }}
+                >
+                  {results.length > 0 ? (
+                    results.map((p) => (
+                      <button
+                        key={p.slug}
+                        onClick={() => handleResultClick(p.slug)}
+                        className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors group"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-gray-800 group-hover:text-[#cc6633] truncate">
+                            {p.titre}
+                          </p>
+                          <p className="text-xs text-gray-500 truncate mt-0.5">{p.descriptionCourte}</p>
+                        </div>
+                        <span
+                          className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white"
+                          style={{ background: ORA }}
+                        >
+                          {CATEGORY_LABELS[p.categorie] ?? p.categorie}
+                        </span>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="px-4 py-3 text-sm text-gray-500">
+                      Aucun résultat pour «&nbsp;{searchQuery.trim()}&nbsp;»
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* CTA */}
             <a
               href="mailto:Contact@Franck-Nathie.com"
               className="bg-[#E86B0A] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#d05e08] transition-colors shadow-sm"
@@ -177,18 +309,73 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
-            data-testid="btn-mobile-menu"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile: search icon + hamburger */}
+          <div className="flex lg:hidden items-center gap-1">
+            <button
+              onClick={toggleSearch}
+              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              aria-label={searchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+            >
+              {searchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
+            </button>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              data-testid="btn-mobile-menu"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile search bar (pleine largeur sous la navbar) */}
+      {searchOpen && (
+        <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-3">
+          <div className="relative">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Rechercher un produit…"
+              className="w-full border rounded-lg px-4 py-2.5 text-sm text-gray-700 outline-none pr-10"
+              style={{ borderColor: ORA, background: CREAM }}
+              autoFocus
+              aria-label="Rechercher un produit"
+            />
+            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          </div>
+          {hasQuery && (
+            <div className="mt-2 bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden">
+              {results.length > 0 ? (
+                results.map((p) => (
+                  <button
+                    key={p.slug}
+                    onClick={() => handleResultClick(p.slug)}
+                    className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors border-b border-gray-50 last:border-0"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-800 truncate">{p.titre}</p>
+                    </div>
+                    <span
+                      className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white"
+                      style={{ background: ORA }}
+                    >
+                      {CATEGORY_LABELS[p.categorie] ?? p.categorie}
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <div className="px-4 py-3 text-sm text-gray-500">
+                  Aucun résultat pour «&nbsp;{searchQuery.trim()}&nbsp;»
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Mobile nav menu */}
       {mobileOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white px-4 pb-4" data-testid="mobile-menu">
           <div className="pt-3 space-y-1">
