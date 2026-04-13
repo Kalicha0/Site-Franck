@@ -470,10 +470,8 @@ node scripts/capture-html-pages.mjs
 nix-env -iA nixpkgs.chromium nixpkgs.zip
 
 # Pousser vers GitHub
-git checkout fresh-start
-git add .
-git commit -m "message"
-git push https://USERNAME:TOKEN@github.com/Kalicha0/Site-Franck.git fresh-start:main
+# Le token est stocké dans le secret GITHUB_TOKEN (géré par Replit Secrets)
+git push https://Kalicha0:$GITHUB_TOKEN@github.com/Kalicha0/Site-Franck.git main:main
 ```
 
 ---
