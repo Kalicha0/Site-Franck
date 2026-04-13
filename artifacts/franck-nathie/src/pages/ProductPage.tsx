@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
-import { Lock, RefreshCcw, Package, Heart, Calendar, MessageCircle, Video } from "lucide-react";
+import { Lock, Heart, Calendar, MessageCircle, Video } from "lucide-react";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import type { Product } from "@/data/products";
 import NotFound from "@/pages/not-found";
@@ -39,14 +39,14 @@ const BG_LES_PARTS       = "https://laforetnourriciere.org/wp-content/uploads/20
 */
 const TRUST_BADGES: Record<string, { icon: React.ReactNode; label: string }[]> = {
   jeux: [
-    { icon: <Lock size={14} />,       label: "Sécurisé" },
-    { icon: <RefreshCcw size={14} />, label: "Satisfait ou remboursé" },
-    { icon: <Package size={14} />,    label: "Livraison soignée" },
+    { icon: "🔒", label: "Sécurisé" },
+    { icon: "🔄", label: "Satisfait ou remboursé" },
+    { icon: "📦", label: "Livraison soignée" },
   ],
   posters: [
-    { icon: <Lock size={14} />,       label: "Sécurisé" },
-    { icon: <RefreshCcw size={14} />, label: "Satisfait ou remboursé" },
-    { icon: <Package size={14} />,    label: "Livraison soignée" },
+    { icon: "🔒", label: "Sécurisé" },
+    { icon: "🔄", label: "Satisfait ou remboursé" },
+    { icon: "📦", label: "Livraison soignée" },
   ],
   stages: [
     { icon: <Lock size={14} />,        label: "Paiement sécurisé" },
