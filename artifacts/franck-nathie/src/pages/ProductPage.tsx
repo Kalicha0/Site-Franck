@@ -782,6 +782,255 @@ function RelatedCard({ product }: { product: Product }) {
 }
 
 /* ════════════════════════════════════════════════════
+   LAYOUT "SIMPLE" — style e-commerce classique avec onglets
+   Inspiré du design WooCommerce de la capture d'écran
+   ════════════════════════════════════════════════════ */
+type TabId = "description" | "pour-qui" | "avis";
+
+function SimpleProductPage({ product, related, slug }: {
+  product: Product;
+  related: Product[];
+  slug: string;
+}) {
+  const [activeTab, setActiveTab] = useState<TabId>("description");
+  const [galleryIdx, setGalleryIdx] = useState(0);
+  const isStage = product.categorie === "stages";
+  const isTherapie = product.categorie === "therapie";
+  const temos = TEMOIGNAGES[slug] ?? [];
+
+  const tabs: { id: TabId; label: string }[] = [
+    { id: "description", label: "Description" },
+    { id: "pour-qui", label: "Pour qui ?" },
+    ...(temos.length > 0 ? [{ id: "avis" as TabId, label: `Avis (${temos.length})` }] : []),
+  ];
+
+  /* Contenu Description : panelDescription si dispo, sinon descriptionCourte */
+  const descLines: string[] = product.panelDescription?.length
+    ? product.panelDescription
+    : [product.descriptionCourte];
+
+  return (
+    <main style={{ background: "#fff", color: C8, minHeight: "60vh" }}>
+
+      {/* ── Fil d'Ariane ── */}
+      <div style={{ background: C2, borderBottom: `1px solid ${C3}` }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "10px 32px", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: MID, flexWrap: "wrap" }}>
+          <Link href="/"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Accueil</span></Link>
+          <span style={{ color: C3 }}>›</span>
+          <Link href="/boutique"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Boutique</span></Link>
+          <span style={{ color: C3 }}>›</span>
+          <span style={{ color: C8 }}>{product.titre}</span>
+        </div>
+      </div>
+
+      {/* ── PANNEAU PRODUIT ── */}
+      <section style={{ padding: "48px 0 40px", background: "#fff" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
+
+            {/* Galerie */}
+            <div>
+              <div style={{
+                background: C2, borderRadius: "8px", border: `1px solid ${C3}`,
+                minHeight: "360px", display: "flex", alignItems: "center", justifyContent: "center",
+                overflow: "hidden", marginBottom: "12px",
+              }}>
+                {product.images.length > 0
+                  ? <img src={product.images[galleryIdx]} alt={product.titre} style={{ width: "100%", height: "360px", objectFit: "contain", padding: "16px" }} />
+                  : <span style={{ fontSize: "11px", color: MID, textTransform: "uppercase", letterSpacing: "2px" }}>Image à venir</span>
+                }
+              </div>
+              {product.images.length > 1 && (
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  {product.images.map((src, i) => (
+                    <button key={i} onClick={() => setGalleryIdx(i)} style={{
+                      width: "60px", height: "60px", background: C2, borderRadius: "4px",
+                      overflow: "hidden", cursor: "pointer", padding: "2px",
+                      outline: i === galleryIdx ? `2px solid ${ORA}` : `2px solid transparent`,
+                      outlineOffset: "1px", opacity: i === galleryIdx ? 1 : 0.55, border: "none",
+                    }}>
+                      <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Info produit */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {/* Badge catégorie */}
+              <div>
+                <span style={{
+                  display: "inline-block", background: ORA, color: C1,
+                  fontSize: "11px", fontWeight: 700, textTransform: "uppercase",
+                  letterSpacing: "1.5px", padding: "4px 12px", borderRadius: "3px",
+                }}>{product.categorieLabel}</span>
+              </div>
+              {/* Titre */}
+              <h1 style={{ fontFamily: "Atma, sans-serif", fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 700, color: C8, lineHeight: 1.15, margin: 0 }}>
+                {product.titre}
+              </h1>
+              {/* Étoiles */}
+              <div style={{ display: "flex", gap: "2px", alignItems: "center" }}>
+                {[1,2,3,4,5].map(s => <StarFill key={s} />)}
+                <span style={{ fontSize: "13px", color: MID, marginLeft: "6px" }}>(5 avis)</span>
+              </div>
+              {/* Prix */}
+              <p style={{ fontSize: "32px", fontWeight: 800, color: ORA, fontFamily: "Atma, sans-serif", margin: 0 }}>{product.prix}</p>
+              {/* Description courte */}
+              <p style={{ fontSize: "14px", color: MID, lineHeight: 1.7, margin: 0 }}>{product.descriptionCourte}</p>
+              {/* Séparateur */}
+              <div style={{ borderTop: `1px solid ${C3}` }} />
+              {/* Dates */}
+              {product.dates && product.dates.length > 0 && (
+                <div>
+                  <p style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", color: MID, marginBottom: "8px" }}>
+                    Prochaines dates
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                    {product.dates.map((d, i) => (
+                      <span key={i} style={{
+                        fontSize: "12px", fontWeight: 600, color: ORA,
+                        border: `1px solid ${ORA}`, borderRadius: "4px", padding: "5px 10px",
+                      }}>{d}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* CTA primaire */}
+              <a href={`mailto:Contact@Franck-Nathie.com?subject=${isStage || isTherapie ? "Inscription" : "Commande"}`}
+                style={{
+                  display: "block", textAlign: "center", background: ORA, color: C1,
+                  fontWeight: 700, fontSize: "15px", padding: "15px 24px", borderRadius: "4px",
+                  textDecoration: "none", transition: "opacity 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+              >
+                {isStage || isTherapie ? "S'inscrire à la formation" : "Commander"}
+              </a>
+              {/* CTA secondaire */}
+              <a href="mailto:Contact@Franck-Nathie.com"
+                style={{
+                  display: "block", textAlign: "center", background: "transparent",
+                  color: C8, fontWeight: 600, fontSize: "14px",
+                  padding: "12px 24px", borderRadius: "4px",
+                  border: `1.5px solid ${C3}`, textDecoration: "none",
+                  transition: "border-color 0.2s, background 0.2s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = ORA; e.currentTarget.style.background = "#fff8f5"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = C3; e.currentTarget.style.background = "transparent"; }}
+              >
+                Contacter Franck
+              </a>
+              {/* Badges de confiance */}
+              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", paddingTop: "4px" }}>
+                {[
+                  { icon: "🔒", label: "Sécurisé" },
+                  { icon: "✓", label: "Satisfait ou remboursé" },
+                  { icon: "⭕", label: "Livraison soignée" },
+                ].map((b) => (
+                  <span key={b.label} style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "12px", color: MID }}>
+                    <span style={{ fontSize: "13px" }}>{b.icon}</span> {b.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ONGLETS ── */}
+      <section style={{ background: C2, padding: "0 0 56px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 32px" }}>
+          {/* Barre d'onglets */}
+          <div style={{ display: "flex", gap: "0", borderBottom: `2px solid ${C3}`, marginBottom: "32px" }}>
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  padding: "14px 24px", fontSize: "14px", fontWeight: 600,
+                  color: activeTab === tab.id ? ORA : MID,
+                  borderBottom: activeTab === tab.id ? `2px solid ${ORA}` : "2px solid transparent",
+                  marginBottom: "-2px", transition: "color 0.15s",
+                }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Contenu des onglets */}
+          <div style={{
+            background: C1, borderRadius: "8px", border: `1px solid ${C3}`,
+            padding: "32px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+          }}>
+            {/* ── Description ── */}
+            {activeTab === "description" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {descLines.map((para, i) => (
+                  <p key={i} style={{ fontSize: i === 0 ? "15px" : "14px", fontWeight: i === 0 ? 600 : 400, color: i === 0 ? C8 : MID, lineHeight: 1.8, margin: 0 }}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            )}
+            {/* ── Pour qui ? ── */}
+            {activeTab === "pour-qui" && (
+              <div>
+                {product.pourQuiTitle && (
+                  <h2 style={{ fontFamily: "Atma, sans-serif", fontSize: "22px", fontWeight: 700, color: C8, marginTop: 0, marginBottom: "20px" }}>
+                    {product.pourQuiTitle}
+                  </h2>
+                )}
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
+                  {product.pourQui.map((item, i) => (
+                    <li key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                      <span style={{ flexShrink: 0, marginTop: "7px", width: "7px", height: "7px", borderRadius: "50%", background: ORA, display: "block" }} />
+                      <p style={{ fontSize: "14px", color: MID, lineHeight: 1.7, margin: 0 }}>{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {/* ── Avis ── */}
+            {activeTab === "avis" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                {temos.map((t, i) => (
+                  <div key={i} style={{ borderBottom: i < temos.length - 1 ? `1px solid ${C3}` : "none", paddingBottom: i < temos.length - 1 ? "24px" : 0 }}>
+                    <div style={{ display: "flex", gap: "2px", marginBottom: "8px" }}>
+                      {[1,2,3,4,5].map(s => <StarFill key={s} />)}
+                    </div>
+                    <p style={{ fontSize: "13px", color: C8, fontStyle: "italic", lineHeight: 1.8, margin: "0 0 8px" }}>« {t.texte} »</p>
+                    <p style={{ fontSize: "12px", fontWeight: 700, color: ORA, margin: 0 }}>— {t.auteur}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRODUITS SIMILAIRES ── */}
+      {related.length > 0 && (
+        <section style={{ background: "#fff", padding: "56px 0", borderTop: `1px solid ${C3}` }}>
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 32px" }}>
+            <h2 style={{ fontFamily: "Atma, sans-serif", fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 700, color: C8, marginBottom: "28px" }}>
+              Vous aimerez aussi
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+              {related.map((p) => <RelatedCard key={p.slug} product={p} />)}
+            </div>
+          </div>
+        </section>
+      )}
+    </main>
+  );
+}
+
+/* ════════════════════════════════════════════════════
    PAGE PRINCIPALE
    ════════════════════════════════════════════════════ */
 export default function ProductPage() {
@@ -791,6 +1040,12 @@ export default function ProductPage() {
   if (!product) return <NotFound />;
 
   const related = getRelatedProducts(product.produitsSimilaires);
+
+  /* Aiguillage vers le layout simplifié (onglets, sans hero parallax) */
+  if (product.layout === "simple") {
+    return <SimpleProductPage product={product} related={related} slug={slug} />;
+  }
+
   const isStage    = product.categorie === "stages";
   const isTherapie = product.categorie === "therapie";
 

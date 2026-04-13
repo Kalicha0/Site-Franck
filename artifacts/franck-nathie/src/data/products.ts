@@ -29,6 +29,7 @@ export type Product = {
   };
   echeTexte?: string[];
   produitsSimilaires: string[];
+  layout?: "full" | "simple";
 };
 
 export const products: Product[] = [
@@ -198,6 +199,7 @@ export const products: Product[] = [
       "Une porte ouverte sur le premier jour du reste de ta vie et de toutes les nouvelles perspectives qui vont s'ouvrir à toi à la suite du stage",
     ],
     produitsSimilaires: ["stage-guerison", "jeu-cartes", "poster-capt"],
+    layout: "simple",
   },
   {
     slug: "therapie-ligne",
