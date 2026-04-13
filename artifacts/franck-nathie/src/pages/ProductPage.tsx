@@ -271,7 +271,7 @@ function ProductInfoPanel({ product }: { product: Product }) {
 
       {/* CTAs */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", paddingTop: "6px" }}>
-        <a href="mailto:Contact@Franck-Nathie.com?subject=Inscription"
+        <a href={`mailto:Contact@Franck-Nathie.com?subject=${isStage || isTherapie ? "Inscription" : "Commande"}`}
           style={{
             display: "block", textAlign: "center", background: ORA, color: C1,
             fontWeight: 700, fontSize: "15px", padding: "14px 24px", borderRadius: "4px",
