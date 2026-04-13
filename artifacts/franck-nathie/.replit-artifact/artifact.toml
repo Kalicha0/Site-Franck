@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Franck Nathie - DPAE"
+title = "Franck Nathie - DPEC"
 version = "1.0.0"
 id = "artifacts/franck-nathie"
 router = "path"
@@ -12,7 +12,7 @@ version = "1.0.0"
 [[services]]
 name = "web"
 paths = [ "/" ]
-localPort = 22690
+localPort = 3000
 
 [services.development]
 run = "pnpm --filter @workspace/franck-nathie run dev"
@@ -27,5 +27,5 @@ from = "/*"
 to = "/index.html"
 
 [services.env]
-PORT = "22690"
+PORT = "3000"
 BASE_PATH = "/"

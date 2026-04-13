@@ -224,10 +224,6 @@ importers:
         version: 3.1.0
 
   artifacts/franck-nathie:
-    dependencies:
-      embla-carousel-autoplay:
-        specifier: ^8.6.0
-        version: 8.6.0(embla-carousel@8.6.0)
     devDependencies:
       '@hookform/resolvers':
         specifier: ^3.10.0
@@ -358,6 +354,9 @@ importers:
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
+      embla-carousel-autoplay:
+        specifier: ^8.6.0
+        version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
