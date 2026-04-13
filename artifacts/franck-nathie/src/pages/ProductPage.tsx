@@ -28,6 +28,7 @@ const MID = "#555555";
 
 const BG_HERO_PARALLAX   = "https://laforetnourriciere.org/wp-content/uploads/2023/04/calendrier-jardin-foret.jpg";
 const BG_STAGE_BANNER    = "https://laforetnourriciere.org/wp-content/uploads/2019/07/P1210349-scaled.jpg";
+const BG_LES_PARTS       = "https://laforetnourriciere.org/wp-content/uploads/2023/07/Les-parts-Decharges.png";
 
 /* ─── Textes formateur (constants partagées) ─── */
 const FORMATEUR_BIO = [
@@ -87,6 +88,38 @@ function StarFill() {
     <svg className="inline" style={{ width: "16px", height: "16px" }} fill={ORA} viewBox="0 0 20 20">
       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
     </svg>
+  );
+}
+
+/* ══ FLIP CARD — face orange / dos tan (style original laforetnourriciere.org) ══ */
+function FlipCard({ text }: { text: string }) {
+  const [flipped, setFlipped] = useState(false);
+  return (
+    <>
+      <style>{`
+        .fc-inner { transition: transform 0.55s cubic-bezier(.4,0,.2,1); transform-style: preserve-3d; position: relative; }
+        .fc-inner.flipped { transform: rotateY(180deg); }
+        .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 18px; border-radius: 6px; }
+        .fc-back { transform: rotateY(180deg); }
+      `}</style>
+      <div
+        style={{ perspective: "800px", width: "100%", height: "100px", cursor: "pointer", position: "relative" }}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
+        onClick={() => setFlipped(f => !f)}
+      >
+        <div className={`fc-inner${flipped ? " flipped" : ""}`} style={{ width: "100%", height: "100%" }}>
+          {/* Face avant — orange */}
+          <div className="fc-face" style={{ background: ORA }}>
+            <p style={{ fontSize: "14px", fontWeight: 700, color: C1, textAlign: "center", lineHeight: 1.4, margin: 0 }}>{text}</p>
+          </div>
+          {/* Face arrière — tan */}
+          <div className="fc-face fc-back" style={{ background: C4 }}>
+            <p style={{ fontSize: "13px", fontWeight: 600, color: C1, textAlign: "center", lineHeight: 1.5, margin: 0 }}>{text}</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -328,18 +361,11 @@ function PourQuiSection({ product }: { product: Product }) {
             )}
           </div>
 
-          {/* Colonne 3 : dark panel avec highlights + CTA */}
+          {/* Colonne 3 : dark panel avec flip cards + CTA */}
           {hasHighlights && (
-            <div style={{ background: DARK_COL, borderRadius: "6px", padding: "28px 24px", display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ background: DARK_COL, borderRadius: "6px", padding: "28px 24px", display: "flex", flexDirection: "column", gap: "16px" }}>
               {product.highlights!.map((h, i) => (
-                <div key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                  <div style={{ flexShrink: 0, width: "28px", height: "28px", borderRadius: "50%", background: ORA, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <p style={{ fontSize: "14px", color: C1, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>{h}</p>
-                </div>
+                <FlipCard key={i} text={h} />
               ))}
               <a href="mailto:Contact@Franck-Nathie.com?subject=Inscription"
                 style={{
@@ -734,6 +760,26 @@ export default function ProductPage() {
 
   return (
     <main style={{ background: C2, color: C8 }}>
+      {/* ── HERO PARALLAX — H1 + sous-titre sur image de fond ── */}
+      <section style={{
+        backgroundImage: `url("${BG_HERO_PARALLAX}")`,
+        backgroundSize: "cover", backgroundPosition: "center center",
+        backgroundAttachment: "fixed",
+        padding: "80px 0", position: "relative",
+      }}>
+        <div style={{ position: "absolute", inset: 0, background: "rgba(9,27,24,0.65)" }} />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "900px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
+          <h1 style={{ fontFamily: "Atma, sans-serif", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 700, color: C1, lineHeight: 1.15, marginBottom: "16px" }}>
+            {product.titre}
+          </h1>
+          {product.subtitle && (
+            <h2 style={{ fontFamily: "Atma, sans-serif", fontSize: "clamp(18px, 2.5vw, 28px)", fontWeight: 400, color: C1, opacity: 0.9, lineHeight: 1.4, margin: 0 }}>
+              {product.subtitle}
+            </h2>
+          )}
+        </div>
+      </section>
+
       {/* ── Fil d'Ariane ── */}
       <div style={{ background: C1, borderBottom: `1px solid ${C3}` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "10px 40px", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: MID, flexWrap: "wrap" }}>
@@ -759,6 +805,26 @@ export default function ProductPage() {
       {isStage && (
         <>
           <PourQuiSection product={product} />
+          {/* Section parallax "Les Parts Déchargées" — entre Pour Qui et bannière stage */}
+          <section style={{
+            backgroundImage: `url("${BG_LES_PARTS}")`,
+            backgroundSize: "cover", backgroundPosition: "center center",
+            backgroundAttachment: "scroll",
+            padding: "80px 0", position: "relative",
+          }}>
+            <div style={{ position: "absolute", inset: 0, background: "rgba(9,27,24,0.55)" }} />
+            <div style={{ position: "relative", zIndex: 1, maxWidth: "700px", margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
+              <h2 style={{ fontFamily: "Atma, sans-serif", fontSize: "clamp(22px, 3vw, 38px)", fontWeight: 700, color: C1, lineHeight: 1.25, marginBottom: "16px" }}>
+                Un stage de trois jours rien que pour toi
+              </h2>
+              <p style={{ fontSize: "15px", color: C1, opacity: 0.9, lineHeight: 1.7 }}>
+                Trois jours pour utiliser le jeu Gai-rire en groupe, apprendre à identifier facilement tes besoins et tes blessures grâce à tes sentiments et changer tes habitudes pour entrer dans le 1er jour du reste de ta vie
+              </p>
+              <p style={{ fontSize: "18px", fontWeight: 700, color: C1, marginTop: "14px" }}>
+                Il y aura un avant et un après ce stage !
+              </p>
+            </div>
+          </section>
           <StageTitleSection product={product} />
           <ProgrammeSection product={product} />
           <FormateurSection />
