@@ -60,3 +60,45 @@ id = "xoSb2NmiOFuf25JSgDv6k"
 uri = "file://screenshots/page-article-blessures.jpg"
 type = "image"
 title = "Page Article 12 blessures"
+
+[[outputs]]
+id = "qcfVBUY6iJjJvpG8S-Ue6"
+uri = "file://exports/trust-badges-icons/cadenas.svg"
+type = "image"
+title = "🔒 cadenas.svg — Sécurisé"
+
+[[outputs]]
+id = "olCKnu1hc1CrtJMRMjj7y"
+uri = "file://exports/trust-badges-icons/retour.svg"
+type = "image"
+title = "🔄 retour.svg — Satisfait ou remboursé"
+
+[[outputs]]
+id = "HnrUP1F1s3lNUvmlXoEk2"
+uri = "file://exports/trust-badges-icons/colis.svg"
+type = "image"
+title = "📦 colis.svg — Livraison soignée"
+
+[[outputs]]
+id = "TqQafs9kImF5c3Gap5yMX"
+uri = "file://exports/trust-badges-icons/coeur-vert.svg"
+type = "image"
+title = "💚 coeur-vert.svg — Bienveillance garantie"
+
+[[outputs]]
+id = "EFWDhw58oH75RdoDlC1ak"
+uri = "file://exports/trust-badges-icons/calendrier.svg"
+type = "image"
+title = "🗓️ calendrier.svg — Dates flexibles"
+
+[[outputs]]
+id = "f7xUjIjcXVgeYhuR_Sgba"
+uri = "file://exports/trust-badges-icons/bulle.svg"
+type = "image"
+title = "💬 bulle.svg — Accompagnement personnalisé"
+
+[[outputs]]
+id = "UU8OuCtlSEFbtK6ouYaCK"
+uri = "file://exports/trust-badges-icons/camera.svg"
+type = "image"
+title = "🎥 camera.svg — Séance en visio"
