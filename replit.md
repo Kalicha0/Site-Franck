@@ -153,17 +153,38 @@ Le workflow `artifacts/franck-nathie: web` doit être actif. Il exécute :
 ```bash
 pnpm --filter @workspace/franck-nathie run dev
 ```
-Le port est assigné automatiquement via la variable d'environnement `PORT`. **Ne jamais hardcoder un port dans vite.config.ts.**
+
+### 6.2.1 Port critique — ne jamais modifier
+
+> ⚠️ **Règle absolue : le port de ce site est `22690` et ne doit jamais être changé.**
+
+Ce port a été assigné par Replit lors de la création de l'artifact. Il est câblé dans le système de proxy interne de Replit et c'est le seul port que le système de détection de workflow peut surveiller pour cet artifact.
+
+**Pourquoi les autres ports ne fonctionnent pas ici :**
+Dans l'environnement Replit, les outils de détection standard (`ss`, `/proc/net/tcp`) ne voient pas les ports liés par Vite (ex : 3000, 5000, 5173) à cause du namespace réseau. `curl localhost:3000` peut renvoyer HTTP 200, mais le workflow déclare quand même `DIDNT_OPEN_A_PORT` et échoue.
+
+**Ce qui doit rester intact dans `artifacts/franck-nathie/.replit-artifact/artifact.toml` :**
+```toml
+[[services]]
+name = "web"
+localPort = 22690
+
+[services.env]
+PORT = "22690"
+BASE_PATH = "/"
+```
+
+Si le workflow `artifacts/franck-nathie: web` est en état `FAILED` avec l'erreur `DIDNT_OPEN_A_PORT`, **vérifier en priorité que `localPort` et `PORT` valent bien `22690`** dans ce fichier `artifact.toml`.
 
 ### 6.3 Vérifier que le site tourne
 ```bash
-curl localhost:$PORT
+curl localhost:22690
 ```
 
 ### 6.4 Builder pour la production / générer le ZIP
 ```bash
 # Build CSS/JS
-PORT=22690 BASE_PATH=/franck-nathie pnpm --filter @workspace/franck-nathie build
+PORT=22690 BASE_PATH=/ pnpm --filter @workspace/franck-nathie build
 
 # Générer les HTML statiques + ZIP
 node scripts/capture-html-pages.mjs
@@ -428,6 +449,8 @@ Après avoir reconstitué le projet, prends un screenshot de chaque page et comp
 9. **Les noms de fichiers `.tsx` et les URLs utilisent `/dpae`** (ancien nom) même si l'acronyme correct est DPEC → ne pas renommer.
 
 10. **Sur la page produit, les CTAs utilisent Tailwind pour les hover** (`hover:bg-[#d05e08]`, `hover:bg-[#E86B0A]`, `hover:text-white`) et non des handlers JS `onMouseEnter`/`onMouseLeave`.
+
+11. **Ne jamais changer le port 22690** dans `artifacts/franck-nathie/.replit-artifact/artifact.toml`. C'est le port unique assigné par Replit à cet artifact. Si on le change (ex : pour 3000 ou 5000), le workflow échoue avec `DIDNT_OPEN_A_PORT` même si Vite démarre correctement — parce que le namespace réseau de Replit ne rend pas ces autres ports visibles au système de détection. Voir section 6.2.1 pour le diagnostic complet.
 
 ---
 
