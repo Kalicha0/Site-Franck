@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation, Link } from "wouter";
+import { useLocation, useSearch, Link } from "wouter";
 import { Search, BookOpen, ShoppingBag, ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import { articles } from "@/data/articles";
@@ -21,12 +21,6 @@ function normalizeStr(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-function getQueryFromUrl(): string {
-  if (typeof window === "undefined") return "";
-  const params = new URLSearchParams(window.location.search);
-  return params.get("q") ?? "";
-}
-
 function searchAll(query: string) {
   const q = normalizeStr(query.trim());
   if (!q) return { produits: [], articles: [] };
@@ -41,43 +35,34 @@ function searchAll(query: string) {
 
 export default function SearchPage() {
   const [, navigate] = useLocation();
-  const [rawQuery, setRawQuery] = useState(getQueryFromUrl);
-  const [inputValue, setInputValue] = useState(getQueryFromUrl);
+  const searchString = useSearch();
+  const params = new URLSearchParams(searchString);
+  const urlQuery = params.get("q") ?? "";
+
+  const [inputValue, setInputValue] = useState(urlQuery);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const q = getQueryFromUrl();
-    setRawQuery(q);
-    setInputValue(q);
-  }, []);
-
-  useEffect(() => {
-    const onPop = () => {
-      const q = getQueryFromUrl();
-      setRawQuery(q);
-      setInputValue(q);
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+    setInputValue(urlQuery);
+  }, [urlQuery]);
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value;
     setInputValue(val);
-    setRawQuery(val);
-    const url = val.trim()
+    const newSearch = val.trim()
       ? `/recherche?q=${encodeURIComponent(val.trim())}`
       : "/recherche";
-    window.history.replaceState(null, "", url);
+    navigate(newSearch, { replace: true });
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter" && inputValue.trim()) {
       navigate(`/recherche?q=${encodeURIComponent(inputValue.trim())}`);
+      inputRef.current?.blur();
     }
   }
 
-  const query = rawQuery.trim();
+  const query = urlQuery.trim();
   const { produits, articles: arts } = searchAll(query);
   const totalCount = produits.length + arts.length;
 
@@ -165,14 +150,12 @@ export default function SearchPage() {
                     onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)"; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; (e.currentTarget as HTMLDivElement).style.transform = "none"; }}
                   >
-                    {/* Image */}
                     <div style={{ height: "140px", background: BORDER, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                       {p.images.length > 0
                         ? <img src={p.images[0]} alt={p.titre} style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }} />
                         : <ShoppingBag style={{ width: "32px", height: "32px", color: MID, opacity: 0.4 }} />
                       }
                     </div>
-                    {/* Body */}
                     <div style={{ padding: "16px", flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
                       <span style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", color: "#fff", background: ORA, padding: "3px 8px", borderRadius: "4px", alignSelf: "flex-start" }}>
                         {CATEGORY_LABELS[p.categorie] ?? p.categorie}
