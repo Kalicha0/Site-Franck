@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
-import { Lock, Heart, Calendar, MessageCircle, Video } from "lucide-react";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import type { Product } from "@/data/products";
 import NotFound from "@/pages/not-found";
@@ -49,14 +48,14 @@ const TRUST_BADGES: Record<string, { icon: React.ReactNode; label: string }[]> =
     { icon: "📦", label: "Livraison soignée" },
   ],
   stages: [
-    { icon: <Lock size={14} />,        label: "Paiement sécurisé" },
-    { icon: <Heart size={14} />,       label: "Bienveillance garantie" },
-    { icon: <Calendar size={14} />,    label: "Dates flexibles" },
+    { icon: "🔒", label: "Paiement sécurisé" },
+    { icon: "💚", label: "Bienveillance garantie" },
+    { icon: "🗓️", label: "Dates flexibles" },
   ],
   therapie: [
-    { icon: <Lock size={14} />,           label: "Paiement sécurisé" },
-    { icon: <MessageCircle size={14} />,  label: "Accompagnement personnalisé" },
-    { icon: <Video size={14} />,          label: "Séance en visio" },
+    { icon: "🔒", label: "Paiement sécurisé" },
+    { icon: "💬", label: "Accompagnement personnalisé" },
+    { icon: "🎥", label: "Séance en visio" },
   ],
 };
 
