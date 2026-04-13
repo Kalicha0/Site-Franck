@@ -196,7 +196,7 @@ function ProductGallery({ product }: { product: Product }) {
       <div className="overflow-hidden flex items-center justify-center mb-3"
         style={{ background: C3, minHeight: "400px", aspectRatio: "4/3", borderRadius: "4px" }}>
         {images.length > 0
-          ? <img src={images[activeIdx]} alt={product.titre} className="w-full h-full object-contain p-6" />
+          ? <img src={images[activeIdx]} alt={product.titre} className="w-full h-full object-cover" />
           : <span style={{ color: MID, fontSize: "12px", textTransform: "uppercase", letterSpacing: "2px" }}>Image à venir</span>
         }
       </div>
@@ -210,7 +210,7 @@ function ProductGallery({ product }: { product: Product }) {
                 outline: i === activeIdx ? `2px solid ${ORA}` : "2px solid transparent",
                 outlineOffset: "1px", opacity: i === activeIdx ? 1 : 0.55,
               }}>
-              <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </button>
           ))}
         </div>
@@ -882,7 +882,7 @@ function SimpleProductPage({ product, related, slug }: {
                 overflow: "hidden", marginBottom: "12px",
               }}>
                 {product.images.length > 0
-                  ? <img src={product.images[galleryIdx]} alt={product.titre} style={{ width: "100%", height: "360px", objectFit: "contain", padding: "16px" }} />
+                  ? <img src={product.images[galleryIdx]} alt={product.titre} style={{ width: "100%", height: "360px", objectFit: "cover", display: "block" }} />
                   : <span style={{ fontSize: "11px", color: MID, textTransform: "uppercase", letterSpacing: "2px" }}>Image à venir</span>
                 }
               </div>
@@ -895,7 +895,7 @@ function SimpleProductPage({ product, related, slug }: {
                       outline: i === galleryIdx ? `2px solid ${ORA}` : `2px solid transparent`,
                       outlineOffset: "1px", opacity: i === galleryIdx ? 1 : 0.55, border: "none",
                     }}>
-                      <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                      <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </button>
                   ))}
                 </div>
