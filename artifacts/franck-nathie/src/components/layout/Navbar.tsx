@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ChevronDown, Menu, X, Search } from "lucide-react";
 import { products } from "@/data/products";
+import { articles } from "@/data/articles";
 
 const ORA = "#cc6633";
 const CREAM = "#f0eee5";
@@ -12,14 +13,14 @@ function normalizeStr(s: string) {
 
 function getResults(query: string) {
   const q = normalizeStr(query.trim());
-  if (!q) return [];
-  return products
-    .filter(
-      (p) =>
-        normalizeStr(p.titre).includes(q) ||
-        normalizeStr(p.descriptionCourte).includes(q)
-    )
-    .slice(0, 5);
+  if (!q) return { produits: [], articles: [] };
+  const produits = products
+    .filter((p) => normalizeStr(p.titre + " " + p.descriptionCourte).includes(q))
+    .slice(0, 3);
+  const arts = articles
+    .filter((a) => normalizeStr(a.titre + " " + a.description).includes(q))
+    .slice(0, 2);
+  return { produits, articles: arts };
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -146,14 +147,27 @@ export default function Navbar() {
     }
   }, [searchOpen]);
 
-  const results = getResults(searchQuery);
+  const { produits, articles: arts } = getResults(searchQuery);
   const hasQuery = searchQuery.trim().length > 0;
+  const hasResults = produits.length > 0 || arts.length > 0;
 
-  function handleResultClick(slug: string) {
+  function closeSearch() {
     setSearchOpen(false);
     setSearchQuery("");
+  }
+
+  function handleResultClick(href: string) {
+    closeSearch();
     setMobileOpen(false);
-    navigate(`/boutique/${slug}`);
+    navigate(href);
+  }
+
+  function handleSearchKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      closeSearch();
+      setMobileOpen(false);
+      navigate(`/recherche?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
   }
 
   function toggleSearch() {
@@ -162,6 +176,11 @@ export default function Navbar() {
       return !o;
     });
     setOpenDropdown(null);
+  }
+
+  function goToSearchPage() {
+    closeSearch();
+    navigate(`/recherche?q=${encodeURIComponent(searchQuery.trim())}`);
   }
 
   return (
@@ -240,17 +259,18 @@ export default function Navbar() {
               {/* Expandable input */}
               <div
                 className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ width: searchOpen ? "220px" : "0px", opacity: searchOpen ? 1 : 0 }}
+                style={{ width: searchOpen ? "240px" : "0px", opacity: searchOpen ? 1 : 0 }}
               >
                 <input
                   ref={searchInputRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Rechercher un produit…"
+                  onKeyDown={handleSearchKeyDown}
+                  placeholder="Rechercher (Entrée pour tous les résultats)…"
                   className="w-full border rounded-lg px-3 py-1.5 text-sm text-gray-700 outline-none"
                   style={{ borderColor: ORA, background: CREAM }}
-                  aria-label="Rechercher un produit"
+                  aria-label="Rechercher"
                 />
               </div>
 
@@ -266,35 +286,72 @@ export default function Navbar() {
               {/* Dropdown résultats */}
               {searchOpen && hasQuery && (
                 <div
-                  className="absolute top-full right-0 mt-1 bg-white shadow-lg rounded-lg border border-gray-100 py-1 z-50"
-                  style={{ minWidth: "280px" }}
+                  className="absolute top-full right-0 mt-1 bg-white shadow-lg rounded-lg border border-gray-100 z-50 overflow-hidden"
+                  style={{ minWidth: "300px" }}
                 >
-                  {results.length > 0 ? (
-                    results.map((p) => (
-                      <button
-                        key={p.slug}
-                        onClick={() => handleResultClick(p.slug)}
-                        className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors group"
-                      >
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-gray-800 group-hover:text-[#cc6633] truncate">
-                            {p.titre}
-                          </p>
-                          <p className="text-xs text-gray-500 truncate mt-0.5">{p.descriptionCourte}</p>
-                        </div>
-                        <span
-                          className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white"
-                          style={{ background: ORA }}
+                  {/* Produits */}
+                  {produits.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 border-b border-gray-100">
+                        Produits
+                      </div>
+                      {produits.map((p) => (
+                        <button
+                          key={p.slug}
+                          onClick={() => handleResultClick(`/boutique/${p.slug}`)}
+                          className="w-full text-left flex items-center gap-3 px-4 py-2.5 hover:bg-orange-50 transition-colors group"
                         >
-                          {CATEGORY_LABELS[p.categorie] ?? p.categorie}
-                        </span>
-                      </button>
-                    ))
-                  ) : (
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-800 group-hover:text-[#cc6633] truncate">{p.titre}</p>
+                          </div>
+                          <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white" style={{ background: ORA }}>
+                            {CATEGORY_LABELS[p.categorie] ?? p.categorie}
+                          </span>
+                        </button>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Articles */}
+                  {arts.length > 0 && (
+                    <>
+                      <div className={`px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 border-b border-gray-100 ${produits.length > 0 ? "border-t" : ""}`}>
+                        Articles
+                      </div>
+                      {arts.map((a) => (
+                        <button
+                          key={a.id}
+                          onClick={() => { if (a.active && a.href) handleResultClick(a.href); }}
+                          disabled={!a.active}
+                          className={`w-full text-left flex items-center gap-3 px-4 py-2.5 transition-colors group ${a.active ? "hover:bg-orange-50 cursor-pointer" : "cursor-default opacity-60"}`}
+                        >
+                          <div className="flex-1 min-w-0">
+                            <p className={`text-sm font-semibold truncate ${a.active ? "text-gray-800 group-hover:text-[#cc6633]" : "text-gray-500"}`}>{a.titre}</p>
+                          </div>
+                          <span className={`flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full ${a.active ? "text-white" : "text-gray-400 bg-gray-100"}`} style={a.active ? { background: "#6b8f71" } : {}}>
+                            {a.active ? "Article" : "Bientôt"}
+                          </span>
+                        </button>
+                      ))}
+                    </>
+                  )}
+
+                  {/* Aucun résultat */}
+                  {!hasResults && (
                     <div className="px-4 py-3 text-sm text-gray-500">
                       Aucun résultat pour «&nbsp;{searchQuery.trim()}&nbsp;»
                     </div>
                   )}
+
+                  {/* Lien "Voir tous les résultats" */}
+                  <button
+                    onClick={goToSearchPage}
+                    className="w-full text-left px-4 py-2.5 text-sm font-semibold border-t border-gray-100 hover:bg-orange-50 transition-colors flex items-center justify-between"
+                    style={{ color: ORA }}
+                  >
+                    <span>Voir tous les résultats</span>
+                    <span>→</span>
+                  </button>
                 </div>
               )}
             </div>
@@ -329,7 +386,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile search bar (pleine largeur sous la navbar) */}
+      {/* Mobile search bar */}
       {searchOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-3">
           <div className="relative">
@@ -337,39 +394,66 @@ export default function Navbar() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher un produit…"
+              onKeyDown={handleSearchKeyDown}
+              placeholder="Rechercher produits et articles…"
               className="w-full border rounded-lg px-4 py-2.5 text-sm text-gray-700 outline-none pr-10"
               style={{ borderColor: ORA, background: CREAM }}
               autoFocus
-              aria-label="Rechercher un produit"
+              aria-label="Rechercher"
             />
             <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
           </div>
+
           {hasQuery && (
             <div className="mt-2 bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden">
-              {results.length > 0 ? (
-                results.map((p) => (
-                  <button
-                    key={p.slug}
-                    onClick={() => handleResultClick(p.slug)}
-                    className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors border-b border-gray-50 last:border-0"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-gray-800 truncate">{p.titre}</p>
-                    </div>
-                    <span
-                      className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white"
-                      style={{ background: ORA }}
+              {produits.length > 0 && (
+                <>
+                  <div className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50">Produits</div>
+                  {produits.map((p) => (
+                    <button
+                      key={p.slug}
+                      onClick={() => handleResultClick(`/boutique/${p.slug}`)}
+                      className="w-full text-left flex items-center gap-3 px-4 py-2.5 hover:bg-orange-50 transition-colors border-b border-gray-50"
                     >
-                      {CATEGORY_LABELS[p.categorie] ?? p.categorie}
-                    </span>
-                  </button>
-                ))
-              ) : (
+                      <p className="text-sm font-semibold text-gray-800 truncate flex-1">{p.titre}</p>
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full text-white flex-shrink-0" style={{ background: ORA }}>
+                        {CATEGORY_LABELS[p.categorie] ?? p.categorie}
+                      </span>
+                    </button>
+                  ))}
+                </>
+              )}
+              {arts.length > 0 && (
+                <>
+                  <div className="px-4 py-1.5 text-xs font-semibold text-gray-400 uppercase tracking-wider bg-gray-50">Articles</div>
+                  {arts.map((a) => (
+                    <button
+                      key={a.id}
+                      onClick={() => { if (a.active && a.href) handleResultClick(a.href); }}
+                      disabled={!a.active}
+                      className={`w-full text-left flex items-center gap-3 px-4 py-2.5 transition-colors border-b border-gray-50 ${a.active ? "hover:bg-orange-50" : "opacity-60"}`}
+                    >
+                      <p className="text-sm font-semibold text-gray-800 truncate flex-1">{a.titre}</p>
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full flex-shrink-0 ${a.active ? "text-white" : "text-gray-400 bg-gray-100"}`} style={a.active ? { background: "#6b8f71" } : {}}>
+                        {a.active ? "Article" : "Bientôt"}
+                      </span>
+                    </button>
+                  ))}
+                </>
+              )}
+              {!hasResults && (
                 <div className="px-4 py-3 text-sm text-gray-500">
                   Aucun résultat pour «&nbsp;{searchQuery.trim()}&nbsp;»
                 </div>
               )}
+              <button
+                onClick={goToSearchPage}
+                className="w-full text-left px-4 py-2.5 text-sm font-semibold border-t border-gray-100 hover:bg-orange-50 flex items-center justify-between"
+                style={{ color: ORA }}
+              >
+                <span>Voir tous les résultats</span>
+                <span>→</span>
+              </button>
             </div>
           )}
         </div>

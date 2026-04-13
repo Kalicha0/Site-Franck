@@ -9,6 +9,7 @@ import partsDoubleImg from "@assets/les_parts_exilés_blessés_-_double_17749797
 import bebeImg from "@assets/illustration-bébé_1775654741743.png";
 import triangleImg from "@assets/5d270f42-8428-4ad4-b463-a77c708d9412_1775654492208.png";
 import partsIntImg from "@assets/@_3_les_parts_exilés_blessés_-_double_BD_1775504573602.png";
+import { articles } from "@/data/articles";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,82 +25,57 @@ function useInView(threshold = 0.1) {
   return { ref, inView };
 }
 
-const ARTICLES = [
-  {
-    id: 1,
-    href: "/articles/blessures",
-    active: true,
-    badge: "Article",
-    title: "Les 12 blessures existentielles",
-    description:
-      "Du rejet à la trahison, de l'humiliation à l'injustice — une exploration des expériences fondatrices qui façonnent notre psyché et nos comportements.",
-    visual: (
-      <div className="flex items-center justify-center gap-3 h-full">
-        <img src={rejetImg} alt="" className="w-16 h-16 object-contain" />
-        <img src={trahisonImg} alt="" className="w-16 h-16 object-contain" />
-        <img src={humiliationImg} alt="" className="w-16 h-16 object-contain" />
-      </div>
-    ),
-  },
-  {
-    id: 2,
-    href: null,
-    active: false,
-    badge: "Prochainement",
-    title: "Comprendre le Moi et le Soi",
-    description:
-      "Qui est vraiment aux commandes de votre vie ? La DPEC distingue deux instances fondamentales de notre identité — et ce dialogue intérieur change tout.",
-    visual: (
-      <div className="flex items-center justify-center h-full">
-        <img src={partsDoubleImg} alt="" className="w-36 h-36 object-contain" />
-      </div>
-    ),
-  },
-  {
-    id: 3,
-    href: null,
-    active: false,
-    badge: "Prochainement",
-    title: "Les besoins fondamentaux de l'enfant",
-    description:
-      "L'enfant que nous avons été n'a pas toujours reçu ce dont il avait besoin. Comprendre ces manques originels est le point de départ de toute transformation durable.",
-    visual: (
-      <div className="flex items-center justify-center h-full">
-        <img src={bebeImg} alt="" className="w-28 h-28 object-contain" />
-      </div>
-    ),
-  },
-  {
-    id: 4,
-    href: null,
-    active: false,
-    badge: "Prochainement",
-    title: "Sortir du triangle dramatique",
-    description:
-      "Victime, sauveur, persécuteur : trois rôles que nous jouons tous sans le savoir. Identifier ces mécanismes relationnels est le premier pas vers des relations plus libres.",
-    visual: (
-      <div className="flex items-center justify-center h-full">
-        <img src={triangleImg} alt="" className="w-32 h-32 object-contain" />
-      </div>
-    ),
-  },
-  {
-    id: 5,
-    href: null,
-    active: false,
-    badge: "Prochainement",
-    title: "Les parts intérieures — qui parle en toi ?",
-    description:
-      "Colère soudaine, paralysie inexpliquée, voix intérieure critique : nos comportements sont souvent guidés par des \"parts\" que nous n'avons pas encore rencontrées.",
-    visual: (
-      <div className="flex items-center justify-center h-full">
-        <img src={partsIntImg} alt="" className="w-32 h-32 object-contain" />
-      </div>
-    ),
-  },
-];
+const VISUALS: Record<number, React.ReactNode> = {
+  1: (
+    <div className="flex items-center justify-center gap-3 h-full">
+      <img src={rejetImg} alt="" className="w-16 h-16 object-contain" />
+      <img src={trahisonImg} alt="" className="w-16 h-16 object-contain" />
+      <img src={humiliationImg} alt="" className="w-16 h-16 object-contain" />
+    </div>
+  ),
+  2: (
+    <div className="flex items-center justify-center h-full">
+      <img src={partsDoubleImg} alt="" className="w-36 h-36 object-contain" />
+    </div>
+  ),
+  3: (
+    <div className="flex items-center justify-center h-full">
+      <img src={bebeImg} alt="" className="w-28 h-28 object-contain" />
+    </div>
+  ),
+  4: (
+    <div className="flex items-center justify-center h-full">
+      <img src={triangleImg} alt="" className="w-32 h-32 object-contain" />
+    </div>
+  ),
+  5: (
+    <div className="flex items-center justify-center h-full">
+      <img src={partsIntImg} alt="" className="w-32 h-32 object-contain" />
+    </div>
+  ),
+};
 
-function ArticleCard({ article }: { article: typeof ARTICLES[number] }) {
+type CardArticle = {
+  id: number;
+  href: string | null;
+  active: boolean;
+  badge: string;
+  title: string;
+  description: string;
+  visual: React.ReactNode;
+};
+
+const ARTICLES: CardArticle[] = articles.map((a) => ({
+  id: a.id,
+  href: a.href,
+  active: a.active,
+  badge: a.active ? "Article" : "Prochainement",
+  title: a.titre,
+  description: a.description,
+  visual: VISUALS[a.id] ?? null,
+}));
+
+function ArticleCard({ article }: { article: CardArticle }) {
   const inner = (
     <div
       className={`group bg-white rounded-2xl border border-gray-200 ${

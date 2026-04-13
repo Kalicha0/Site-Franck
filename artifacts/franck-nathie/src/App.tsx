@@ -10,6 +10,7 @@ import DPAEPage from "@/pages/DPAEPage";
 import ArticleBlessures from "@/pages/ArticleBlessures";
 import ShopPage from "@/pages/ShopPage";
 import ProductPage from "@/pages/ProductPage";
+import SearchPage from "@/pages/SearchPage";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/dpae" component={() => <Layout><DPAEPage /></Layout>} />
       <Route path="/boutique" component={() => <Layout><ShopPage /></Layout>} />
       <Route path="/boutique/:sub" component={() => <Layout><ProductPage /></Layout>} />
+      <Route path="/recherche" component={() => <Layout><SearchPage /></Layout>} />
       <Route path="/articles" component={() => <Layout><ComingSoon /></Layout>} />
       <Route path="/articles/blessures" component={() => <Layout><ArticleBlessures /></Layout>} />
       <Route path="/articles/:sub" component={() => <Layout><ComingSoon /></Layout>} />
