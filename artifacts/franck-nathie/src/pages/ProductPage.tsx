@@ -145,21 +145,23 @@ function RelatedCard({ product }: { product: Product }) {
 }
 
 type TabId = "description" | "pourqui" | "avis";
-const TABS: { id: TabId; label: string }[] = [
+const ALL_TABS: { id: TabId; label: string }[] = [
   { id: "description", label: "Description" },
   { id: "pourqui", label: "Pour qui ?" },
   { id: "avis", label: "Avis (5)" },
 ];
 
 function AnimatedTabs({
+  tabs,
   activeTab,
   onTabChange,
 }: {
+  tabs: { id: TabId; label: string }[];
   activeTab: TabId;
   onTabChange: (id: TabId) => void;
 }) {
   const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const activeIdx = TABS.findIndex((t) => t.id === activeTab);
+  const activeIdx = tabs.findIndex((t) => t.id === activeTab);
 
   const getIndicatorStyle = () => {
     const btn = btnRefs.current[activeIdx];
@@ -182,7 +184,7 @@ function AnimatedTabs({
   return (
     <div className="relative border-b border-gray-200 mb-8">
       <div className="flex overflow-x-auto">
-        {TABS.map((tab, idx) => {
+        {tabs.map((tab, idx) => {
           const isActive = activeTab === tab.id;
           return (
             <button
@@ -218,7 +220,7 @@ function EtapesSection({ product }: { product: Product }) {
         className="text-lg font-bold text-gray-800 mb-5"
         style={{ fontFamily: "Atma, sans-serif" }}
       >
-        Les étapes du processus
+        {product.categorie === "stages" ? "Programme de la formation" : "Les étapes du processus"}
       </h3>
       <ol className="space-y-4">
         {product.etapes.map((e) => (
@@ -271,6 +273,7 @@ export default function ProductPage() {
 
   const related = getRelatedProducts(product.produitsSimilaires);
   const avis = AVIS.default;
+  const tabs = ALL_TABS.filter((t) => t.id !== "pourqui" || product.pourQui.length > 0);
 
   return (
     <main data-testid="page-produit" className="bg-gray-50 min-h-screen">
@@ -412,7 +415,7 @@ export default function ProductPage() {
       {/* Tabs section */}
       <section className="py-10 sm:py-14">
         <div className="max-w-6xl mx-auto px-6">
-          <AnimatedTabs activeTab={activeTab} onTabChange={setActiveTab} />
+          <AnimatedTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 
           {/* Tab content */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm">
