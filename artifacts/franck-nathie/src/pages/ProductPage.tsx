@@ -37,27 +37,66 @@ function StarRating({ count = 5 }: { count?: number }) {
   );
 }
 
-function ProductImage({ product }: { product: Product }) {
-  return (
-    <div
-      className="w-full flex flex-col items-center justify-center rounded-2xl shadow-sm overflow-hidden"
-      style={{
-        background: "#f0ede8",
-        minHeight: "380px",
-        aspectRatio: "4/3",
-      }}
-    >
-      {product.image ? (
+function ProductGallery({ product }: { product: Product }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const images = product.images;
+
+  if (images.length === 0) {
+    return (
+      <div
+        className="w-full flex flex-col items-center justify-center rounded-2xl shadow-sm overflow-hidden"
+        style={{ background: "#f0ede8", minHeight: "380px", aspectRatio: "4/3" }}
+      >
+        <span className="text-sm text-gray-400 uppercase tracking-widest">Image à venir</span>
+      </div>
+    );
+  }
+
+  if (images.length === 1) {
+    return (
+      <div
+        className="w-full flex flex-col items-center justify-center rounded-2xl shadow-sm overflow-hidden"
+        style={{ background: "#f0ede8", minHeight: "380px", aspectRatio: "4/3" }}
+      >
         <img
-          src={product.image}
+          src={images[0]}
           alt={product.titre}
           className="w-full h-full object-contain p-8"
         />
-      ) : (
-        <span className="text-sm text-gray-400 uppercase tracking-widest">
-          Image à venir
-        </span>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div
+        className="w-full flex items-center justify-center rounded-2xl shadow-sm overflow-hidden"
+        style={{ background: "#f0ede8", minHeight: "360px", aspectRatio: "4/3" }}
+      >
+        <img
+          src={images[activeIdx]}
+          alt={`${product.titre} — image ${activeIdx + 1}`}
+          className="w-full h-full object-contain p-8"
+        />
+      </div>
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        {images.map((src, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveIdx(idx)}
+            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-150 cursor-pointer ${
+              idx === activeIdx ? "border-[#E86B0A]" : "border-transparent opacity-60 hover:opacity-100"
+            }`}
+            style={{ background: "#f0ede8" }}
+          >
+            <img
+              src={src}
+              alt={`miniature ${idx + 1}`}
+              className="w-full h-full object-contain p-1"
+            />
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -70,9 +109,9 @@ function RelatedCard({ product }: { product: Product }) {
           className="flex items-center justify-center"
           style={{ background: "#f0ede8", minHeight: "140px" }}
         >
-          {product.image ? (
+          {product.images[0] ? (
             <img
-              src={product.image}
+              src={product.images[0]}
               alt={product.titre}
               className="w-full h-full object-contain p-4"
               style={{ maxHeight: "140px" }}
@@ -167,6 +206,57 @@ function AnimatedTabs({
   );
 }
 
+function EtapesSection({ product }: { product: Product }) {
+  if (!product.etapes || product.etapes.length === 0) return null;
+  return (
+    <div className="mt-6">
+      <h3
+        className="text-lg font-bold text-gray-800 mb-5"
+        style={{ fontFamily: "Atma, sans-serif" }}
+      >
+        Les étapes du processus
+      </h3>
+      <ol className="space-y-4">
+        {product.etapes.map((e) => (
+          <li key={e.num} className="flex gap-4 items-start">
+            <span
+              className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+              style={{ background: "#E86B0A" }}
+            >
+              {e.num}
+            </span>
+            <div>
+              <span className="font-semibold text-gray-800">{e.titre}</span>
+              {e.texte && (
+                <p className="text-gray-600 text-sm leading-relaxed mt-1">{e.texte}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function DatesSection({ product }: { product: Product }) {
+  if (!product.dates || product.dates.length === 0) return null;
+  return (
+    <div className="mt-3">
+      <div className="flex flex-wrap gap-2">
+        {product.dates.map((d, i) => (
+          <span
+            key={i}
+            className="text-sm font-medium px-3 py-1.5 rounded-lg border"
+            style={{ borderColor: "#E86B0A", color: "#E86B0A", background: "#fff8f4" }}
+          >
+            {d}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ProductPage() {
   const params = useParams<{ sub: string }>();
   const slug = params?.sub ?? "";
@@ -205,9 +295,9 @@ export default function ProductPage() {
       <section className="py-10 sm:py-14 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            {/* Left — Image */}
+            {/* Left — Gallery */}
             <div className="w-full">
-              <ProductImage product={product} />
+              <ProductGallery product={product} />
             </div>
 
             {/* Right — Product info */}
@@ -223,12 +313,19 @@ export default function ProductPage() {
               </div>
 
               {/* Title */}
-              <h1
-                className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight"
-                style={{ fontFamily: "Atma, sans-serif" }}
-              >
-                {product.titre}
-              </h1>
+              <div>
+                <h1
+                  className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight"
+                  style={{ fontFamily: "Atma, sans-serif" }}
+                >
+                  {product.titre}
+                </h1>
+                {product.subtitle && (
+                  <p className="text-gray-500 text-base mt-2 leading-snug italic">
+                    {product.subtitle}
+                  </p>
+                )}
+              </div>
 
               {/* Stars */}
               <div className="flex items-center gap-2">
@@ -237,14 +334,29 @@ export default function ProductPage() {
               </div>
 
               {/* Price */}
-              <div>
+              <div className="flex items-center gap-3 flex-wrap">
                 <span
                   className="text-3xl font-bold"
                   style={{ color: "#E86B0A" }}
                 >
                   {product.prix}
                 </span>
+                {product.stock && (
+                  <span className="text-sm text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">
+                    {product.stock}
+                  </span>
+                )}
               </div>
+
+              {/* Dates for stages */}
+              {product.dates && product.dates.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    Dates disponibles
+                  </p>
+                  <DatesSection product={product} />
+                </div>
+              )}
 
               {/* Short description */}
               <p className="text-gray-600 leading-relaxed text-base">
@@ -263,7 +375,9 @@ export default function ProductPage() {
                   href="mailto:Contact@Franck-Nathie.com?subject=Commande - Boutique"
                   className="flex items-center justify-center w-full text-white font-semibold text-base rounded-xl py-3.5 px-6 transition-colors duration-200 bg-[#E86B0A] hover:bg-[#d05e08]"
                 >
-                  Ajouter au panier
+                  {product.categorie === "stages" || product.categorie === "therapie"
+                    ? "S'inscrire"
+                    : "Ajouter au panier"}
                 </a>
                 <a
                   href="mailto:Contact@Franck-Nathie.com"
@@ -303,6 +417,7 @@ export default function ProductPage() {
                 {product.descriptionLongue.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
+                <EtapesSection product={product} />
               </div>
             )}
 

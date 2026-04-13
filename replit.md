@@ -444,7 +444,7 @@ Après avoir reconstitué le projet, prends un screenshot de chaque page et comp
 
 7. **Toujours régénérer le ZIP** après chaque modification du site.
 
-8. **Le champ `image` dans les produits** doit exister sur tous les produits (même vide `""`). Sans ce champ, TypeScript rejette le build.
+8. **Le champ `images` dans les produits** est un tableau `string[]` (remplace l'ancien `image: string`). Pour un produit sans image, utiliser `images: []`. Les composants ShopPage et ProductPage lisent `product.images[0]` pour l'image principale, et `product.images` pour la galerie.
 
 9. **Les noms de fichiers `.tsx` et les URLs utilisent `/dpae`** (ancien nom) même si l'acronyme correct est DPEC → ne pas renommer.
 
@@ -497,8 +497,30 @@ Les liens suivants redirigent pour l'instant vers `/coming-soon` :
 - `/articles/parts-protectrices` — Les parts protectrices
 - `/articles/communication` — La communication Transformative
 
-La boutique est fonctionnelle mais les images produit (`image: ""`) sont encore vides — Franck doit fournir les photos de ses produits réels.
+Le seul produit sans image est `jeu-cartes` (jeu de cartes des valeurs existentielles) — pas de page de référence fournie. Toujours `images: []`.
 
 ---
 
-*Rédigé le 12 avril 2026 — projet transféré vers GitHub : `github.com/Kalicha0/Site-Franck`*
+## 16. Données produits — état actuel (avril 2026)
+
+Tous les produits (sauf `jeu-cartes`) sont migrés depuis laforetnourriciere.org :
+
+| Slug | Titre (réel) | Prix | Images |
+|------|-------------|------|--------|
+| `poster-gai-rire` | Poster du jeu Gai-Rire (A2 glacé) | 14,70 € | 2 images (webp, laforetnourriciere.org) |
+| `poster-capt` | Poster CAPT méthode | 14,70 € | 1 image + stock "184 en stock" |
+| `jeu-gai-rire` | Jeu de Carte \| Gai-rire les blessures de l'être | 64,90 € | 7 images |
+| `therapie-ligne` | Thérapie Soi-nier ou Gai-rire | 267 € | 4 images + 7 étapes numérotées |
+| `stage-capt` | Communication Authentique Profonde & Transformative | 350–490 € | 7 images + date nov. 2026 |
+| `stage-guerison` | Guérison des blessures intérieures | 350–490 € | 7 images + 3 dates 2026 |
+| `jeu-cartes` | Jeu de cartes des valeurs existentielles | À partir de 25 € | Aucune (placeholder) |
+
+**Type Product** : `images: string[]`, `etapes?: {num, titre, texte}[]`, `stock?: string`, `dates?: string[]`, `subtitle?: string`.
+
+Les images utilisent les URLs directes de laforetnourriciere.org (pas d'hébergement local).
+
+**ZIP** : Le script `node scripts/capture-html-pages.mjs` nécessite Chromium via Playwright. Si Chromium n'est pas disponible (reset d'environnement), installer via `nix-env -iA nixpkgs.chromium nixpkgs.zip` puis relancer.
+
+---
+
+*Rédigé le 12 avril 2026 — Mis à jour le 13 avril 2026 — projet transféré vers GitHub : `github.com/Kalicha0/Site-Franck`*

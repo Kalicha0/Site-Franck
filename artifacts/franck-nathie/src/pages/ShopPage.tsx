@@ -64,10 +64,11 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 function ProductPlaceholder({ product }: { product: Product }) {
-  if (product.image) {
+  const img = product.images[0];
+  if (img) {
     return (
       <img
-        src={product.image}
+        src={img}
         alt={product.titre}
         className="w-full h-full absolute inset-0 object-contain p-4"
       />
