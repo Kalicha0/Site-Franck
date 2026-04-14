@@ -896,7 +896,7 @@ function SimpleProductPage({ product, related, slug }: {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start" }}>
 
             {/* Galerie */}
-            <div>
+            <div style={{ position: "sticky", top: "80px" }}>
               <div style={{
                 background: C2, borderRadius: "8px", border: `1px solid ${C3}`,
                 minHeight: "360px", display: "flex", alignItems: "center", justifyContent: "center",
@@ -1135,7 +1135,9 @@ export default function ProductPage() {
       <section style={{ background: C2, padding: "60px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
-            <ProductGallery product={product} />
+            <div style={{ position: "sticky", top: "80px" }}>
+              <ProductGallery product={product} />
+            </div>
             <ProductInfoPanel product={product} />
           </div>
         </div>
