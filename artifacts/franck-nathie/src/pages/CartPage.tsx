@@ -4,7 +4,7 @@ import { useCart } from "@/context/CartContext";
 const C1  = "#ffffff";
 const C2  = "#f0eee5";
 const C3  = "#dfddd2";
-const ORA = "#cc6633";
+const ORA = "#E86B0A";
 const MID = "#555555";
 const TXT = "#091b18";
 

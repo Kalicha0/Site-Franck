@@ -5,7 +5,7 @@ import { products } from "@/data/products";
 import { articles } from "@/data/articles";
 import { useCart } from "@/context/CartContext";
 
-const ORA = "#cc6633";
+const ORA = "#E86B0A";
 const CREAM = "#f0eee5";
 
 function normalizeStr(s: string) {
@@ -279,7 +279,7 @@ export default function Navbar() {
               {/* Loupe / X icon */}
               <button
                 onClick={toggleSearch}
-                className="ml-1 p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#cc6633] transition-colors"
+                className="ml-1 p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#E86B0A] transition-colors"
                 aria-label={searchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
               >
                 {searchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
@@ -304,7 +304,7 @@ export default function Navbar() {
                           className="w-full text-left flex items-center gap-3 px-4 py-2.5 hover:bg-orange-50 transition-colors group"
                         >
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-800 group-hover:text-[#cc6633] truncate">{p.titre}</p>
+                            <p className="text-sm font-semibold text-gray-800 group-hover:text-[#E86B0A] truncate">{p.titre}</p>
                           </div>
                           <span className="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full text-white" style={{ background: ORA }}>
                             {CATEGORY_LABELS[p.categorie] ?? p.categorie}
@@ -328,7 +328,7 @@ export default function Navbar() {
                           className={`w-full text-left flex items-center gap-3 px-4 py-2.5 transition-colors group ${a.active ? "hover:bg-orange-50 cursor-pointer" : "cursor-default opacity-60"}`}
                         >
                           <div className="flex-1 min-w-0">
-                            <p className={`text-sm font-semibold truncate ${a.active ? "text-gray-800 group-hover:text-[#cc6633]" : "text-gray-500"}`}>{a.titre}</p>
+                            <p className={`text-sm font-semibold truncate ${a.active ? "text-gray-800 group-hover:text-[#E86B0A]" : "text-gray-500"}`}>{a.titre}</p>
                           </div>
                           <span className={`flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full ${a.active ? "text-white" : "text-gray-400 bg-gray-100"}`} style={a.active ? { background: "#6b8f71" } : {}}>
                             {a.active ? "Article" : "Bientôt"}
@@ -361,7 +361,7 @@ export default function Navbar() {
             {/* Icône panier */}
             <Link href="/panier">
               <button
-                className="relative p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#cc6633] transition-colors"
+                className="relative p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#E86B0A] transition-colors"
                 aria-label="Mon panier"
               >
                 <ShoppingCart className="w-4 h-4" />

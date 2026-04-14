@@ -4,7 +4,7 @@ import { Search, BookOpen, ShoppingBag, ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import { articles } from "@/data/articles";
 
-const ORA = "#cc6633";
+const ORA = "#E86B0A";
 const CREAM = "#f0eee5";
 const BORDER = "#dfddd2";
 const TEXT = "#091b18";

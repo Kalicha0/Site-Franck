@@ -16,14 +16,14 @@ import { useCart } from "@/context/CartContext";
    --awb-color8  = #091b18  quasi-noir verdâtre (texte)
    --awb-custom_color_1 = #5c903f  vert
    --awb-custom_color_2 = #434444  gris foncé (colonne droite Pour Qui)
-   --awb-custom_color_4 = #cc6633  orange (tous CTAs, accents)
+   --awb-custom_color_4 = #E86B0A  orange (tous CTAs, accents)
    ═══════════════════════════════════════════════════════════ */
 const C1  = "#ffffff";   // blanc
 const C2  = "#f0eee5";   // crème
 const C3  = "#dfddd2";   // beige clair / bordures
 const C4  = "#b9b58d";   // tan
 const C8  = "#091b18";   // texte principal
-const ORA = "#cc6633";   // orange CTA
+const ORA = "#E86B0A";   // orange CTA
 const DARK_COL = "#434444"; // colonne sombre "Pour Qui"
 const MID = "#555555";
 
