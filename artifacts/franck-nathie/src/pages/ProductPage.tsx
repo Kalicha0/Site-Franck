@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "wouter";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import type { Product } from "@/data/products";
 import NotFound from "@/pages/not-found";
+import { useCart } from "@/context/CartContext";
 
 /* ═══════════════════════════════════════════════════════════
    DESIGN — Reproduction pixel-perfect de laforetnourriciere.org
@@ -223,6 +224,20 @@ function ProductGallery({ product }: { product: Product }) {
 function ProductInfoPanel({ product }: { product: Product }) {
   const isStage = product.categorie === "stages";
   const isTherapie = product.categorie === "therapie";
+  const { addToCart } = useCart();
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = useCallback(() => {
+    addToCart({
+      slug: product.slug,
+      titre: product.titre,
+      prix: product.prix,
+      image: product.images[0] ?? "",
+      categorie: product.categorie,
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  }, [addToCart, product]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
@@ -314,17 +329,19 @@ function ProductInfoPanel({ product }: { product: Product }) {
 
       {/* CTAs */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", paddingTop: "6px" }}>
-        <a href={`mailto:Contact@Franck-Nathie.com?subject=${isStage || isTherapie ? "Inscription" : "Commande"}`}
+        <button
+          onClick={handleAddToCart}
           style={{
-            display: "block", textAlign: "center", background: ORA, color: C1,
+            display: "block", width: "100%", textAlign: "center",
+            background: added ? "#4caf50" : ORA, color: C1,
             fontWeight: 700, fontSize: "15px", padding: "14px 24px", borderRadius: "4px",
-            textDecoration: "none", transition: "opacity 0.2s",
+            border: "none", cursor: "pointer", transition: "background 0.3s, opacity 0.2s",
           }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+          onMouseEnter={e => { if (!added) e.currentTarget.style.opacity = "0.85"; }}
           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
         >
-          {isStage || isTherapie ? "S'inscrire à la formation" : "Commander"}
-        </a>
+          {added ? "✓ Ajouté au panier !" : (isStage || isTherapie ? "S'inscrire à la formation" : "Commander")}
+        </button>
         <a href="mailto:Contact@Franck-Nathie.com"
           style={{
             display: "block", textAlign: "center", background: "transparent",
@@ -840,9 +857,23 @@ function SimpleProductPage({ product, related, slug }: {
 }) {
   const [activeTab, setActiveTab] = useState<TabId>("description");
   const [galleryIdx, setGalleryIdx] = useState(0);
+  const [added, setAdded] = useState(false);
   const isStage = product.categorie === "stages";
   const isTherapie = product.categorie === "therapie";
   const temos = TEMOIGNAGES[slug] ?? [];
+  const { addToCart } = useCart();
+
+  const handleAddToCart = useCallback(() => {
+    addToCart({
+      slug: product.slug,
+      titre: product.titre,
+      prix: product.prix,
+      image: product.images[0] ?? "",
+      categorie: product.categorie,
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  }, [addToCart, product]);
 
   const tabs: { id: TabId; label: string }[] = [
     { id: "description", label: "Description" },
@@ -944,17 +975,19 @@ function SimpleProductPage({ product, related, slug }: {
                 </div>
               )}
               {/* CTA primaire */}
-              <a href={`mailto:Contact@Franck-Nathie.com?subject=${isStage || isTherapie ? "Inscription" : "Commande"}`}
+              <button
+                onClick={handleAddToCart}
                 style={{
-                  display: "block", textAlign: "center", background: ORA, color: C1,
+                  display: "block", width: "100%", textAlign: "center",
+                  background: added ? "#4caf50" : ORA, color: C1,
                   fontWeight: 700, fontSize: "15px", padding: "15px 24px", borderRadius: "4px",
-                  textDecoration: "none", transition: "opacity 0.2s",
+                  border: "none", cursor: "pointer", transition: "background 0.3s, opacity 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                onMouseEnter={e => { if (!added) e.currentTarget.style.opacity = "0.85"; }}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
               >
-                {isStage || isTherapie ? "S'inscrire à la formation" : "Commander"}
-              </a>
+                {added ? "✓ Ajouté au panier !" : (isStage || isTherapie ? "S'inscrire à la formation" : "Commander")}
+              </button>
               {/* CTA secondaire */}
               <a href="mailto:Contact@Franck-Nathie.com"
                 style={{

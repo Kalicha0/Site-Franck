@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ChevronDown, Menu, X, Search } from "lucide-react";
+import { ChevronDown, Menu, X, Search, ShoppingCart } from "lucide-react";
 import { products } from "@/data/products";
 import { articles } from "@/data/articles";
+import { useCart } from "@/context/CartContext";
 
 const ORA = "#cc6633";
 const CREAM = "#f0eee5";
@@ -104,6 +105,7 @@ function DropdownMenu({ items }: { items: { label: string; href: string }[] }) {
 
 export default function Navbar() {
   const [location, navigate] = useLocation();
+  const { count } = useCart();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -356,6 +358,22 @@ export default function Navbar() {
               )}
             </div>
 
+            {/* Icône panier */}
+            <Link href="/panier">
+              <button
+                className="relative p-2 rounded-lg text-gray-600 hover:bg-orange-50 hover:text-[#cc6633] transition-colors"
+                aria-label="Mon panier"
+              >
+                <ShoppingCart className="w-4 h-4" />
+                {count > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white rounded-full"
+                    style={{ background: ORA }}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            </Link>
+
             {/* CTA */}
             <a
               href="mailto:Contact@Franck-Nathie.com"
@@ -366,8 +384,22 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile: search icon + hamburger */}
+          {/* Mobile: cart + search + hamburger */}
           <div className="flex lg:hidden items-center gap-1">
+            <Link href="/panier">
+              <button
+                className="relative p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                aria-label="Mon panier"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                {count > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-bold text-white rounded-full"
+                    style={{ background: ORA }}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            </Link>
             <button
               onClick={toggleSearch}
               className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
