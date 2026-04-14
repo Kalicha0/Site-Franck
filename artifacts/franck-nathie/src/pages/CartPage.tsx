@@ -85,7 +85,7 @@ export default function CartPage() {
                 }}>
                   {/* Image */}
                   <div style={{
-                    width: "64px", height: "64px", borderRadius: "4px",
+                    width: "60px", height: "60px", borderRadius: "4px",
                     overflow: "hidden", flexShrink: 0, background: C2,
                   }}>
                     {item.image

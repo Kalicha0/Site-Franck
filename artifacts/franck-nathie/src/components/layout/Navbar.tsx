@@ -384,8 +384,15 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile: cart + search + hamburger */}
+          {/* Mobile: search + cart + hamburger */}
           <div className="flex lg:hidden items-center gap-1">
+            <button
+              onClick={toggleSearch}
+              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              aria-label={searchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+            >
+              {searchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
+            </button>
             <Link href="/panier">
               <button
                 className="relative p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
@@ -400,13 +407,6 @@ export default function Navbar() {
                 )}
               </button>
             </Link>
-            <button
-              onClick={toggleSearch}
-              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
-              aria-label={searchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
-            >
-              {searchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
-            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
