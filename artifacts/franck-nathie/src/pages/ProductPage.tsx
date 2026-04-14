@@ -889,16 +889,6 @@ function SimpleProductPage({ product, related, slug }: {
   return (
     <main style={{ background: "#fff", color: C8, minHeight: "60vh" }}>
 
-      {/* ── Fil d'Ariane ── */}
-      <div style={{ background: C2, borderBottom: `1px solid ${C3}` }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "10px 32px", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: MID, flexWrap: "wrap" }}>
-          <Link href="/"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Accueil</span></Link>
-          <span style={{ color: C3 }}>›</span>
-          <Link href="/boutique"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Boutique</span></Link>
-          <span style={{ color: C3 }}>›</span>
-          <span style={{ color: C8 }}>{product.titre}</span>
-        </div>
-      </div>
 
       {/* ── PANNEAU PRODUIT ── */}
       <section style={{ padding: "48px 0 40px", background: "#fff" }}>
@@ -1140,16 +1130,6 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* ── Fil d'Ariane ── */}
-      <div style={{ background: C1, borderBottom: `1px solid ${C3}` }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "10px 40px", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: MID, flexWrap: "wrap" }}>
-          <Link href="/"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Accueil</span></Link>
-          <span style={{ color: C3 }}>›</span>
-          <Link href="/boutique"><span style={{ color: ORA, cursor: "pointer" }} onMouseEnter={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "underline")} onMouseLeave={e => ((e.currentTarget as HTMLSpanElement).style.textDecoration = "none")}>Boutique</span></Link>
-          <span style={{ color: C3 }}>›</span>
-          <span>{product.titre}</span>
-        </div>
-      </div>
 
       {/* ── PANNEAU PRODUIT (fond crème #f0ede8) ── */}
       <section style={{ background: C2, padding: "60px 0" }}>
