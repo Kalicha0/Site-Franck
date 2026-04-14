@@ -6,7 +6,7 @@ import { articles } from "@/data/articles";
 import { useCart } from "@/context/CartContext";
 
 const ORA = "#cc6633";
-const CREAM = "#f0eee5";
+const CREAM = "#f0ede8";
 
 function normalizeStr(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");

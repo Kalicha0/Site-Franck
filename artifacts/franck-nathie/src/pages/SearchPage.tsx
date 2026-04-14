@@ -5,7 +5,7 @@ import { products } from "@/data/products";
 import { articles } from "@/data/articles";
 
 const ORA = "#cc6633";
-const CREAM = "#f0eee5";
+const CREAM = "#f0ede8";
 const BORDER = "#dfddd2";
 const TEXT = "#091b18";
 const MID = "#555555";

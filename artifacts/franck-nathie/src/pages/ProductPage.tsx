@@ -10,7 +10,7 @@ import { useCart } from "@/context/CartContext";
    Couleurs extraites directement du code source CSS de l'original
    ═══════════════════════════════════════════════════════════
    --awb-color1  = #ffffff  blanc
-   --awb-color2  = #f0eee5  crème   (fond panneau, témoignages, pour qui gradient)
+   --awb-color2  = #f0ede8  crème   (fond panneau, témoignages, pour qui gradient)
    --awb-color3  = #dfddd2  beige clair (bordures, gradient formateur)
    --awb-color4  = #b9b58d  tan     (fond "Que va apporter" entier)
    --awb-color8  = #091b18  quasi-noir verdâtre (texte)
@@ -19,7 +19,7 @@ import { useCart } from "@/context/CartContext";
    --awb-custom_color_4 = #cc6633  orange (tous CTAs, accents)
    ═══════════════════════════════════════════════════════════ */
 const C1  = "#ffffff";   // blanc
-const C2  = "#f0eee5";   // crème
+const C2  = "#f0ede8";   // crème
 const C3  = "#dfddd2";   // beige clair / bordures
 const C4  = "#b9b58d";   // tan
 const C8  = "#091b18";   // texte principal
@@ -372,7 +372,7 @@ function ProductInfoPanel({ product }: { product: Product }) {
    ═══════════════════════════════════════ */
 
 /* SECTION 1 — POUR QUI
-   bg: linear-gradient(180deg, #fff 0%, #f0eee5 100%)
+   bg: linear-gradient(180deg, #fff 0%, #f0ede8 100%)
    3 colonnes : images | liste | dark panel avec highlights + CTA
 */
 function PourQuiSection({ product }: { product: Product }) {
@@ -742,7 +742,7 @@ function EchecSection({ product }: { product: Product }) {
 }
 
 /* SECTION 8 — TÉMOIGNAGES
-   bg: #f0eee5 (crème)
+   bg: #f0ede8 (crème)
    Cards : bg blanc + ombre légère pour ressortir sur le fond crème
 */
 function TemoignagesSection({ slug }: { slug: string }) {
@@ -1151,7 +1151,7 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* ── PANNEAU PRODUIT (fond crème #f0eee5) ── */}
+      {/* ── PANNEAU PRODUIT (fond crème #f0ede8) ── */}
       <section style={{ background: C2, padding: "60px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
