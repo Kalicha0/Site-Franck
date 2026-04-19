@@ -896,6 +896,9 @@ function TemoignagesSection({ slug }: { slug: string }) {
           width: 380px;
           max-width: 85vw;
         }
+        .temo-marquee-track [data-clone="true"] {
+          display: contents;
+        }
         @keyframes temo-scroll {
           from { transform: translateX(0); }
           to   { transform: translateX(calc(-50% - 12px)); }
@@ -932,7 +935,7 @@ function TemoignagesSection({ slug }: { slug: string }) {
             <TemoignageCard key={`o-${i}-${t.auteur}`} t={t} />
           ))}
           {list.map((t, i) => (
-            <div key={`c-${i}-${t.auteur}`} data-clone="true" aria-hidden="true" style={{ display: "contents" }}>
+            <div key={`c-${i}-${t.auteur}`} data-clone="true" aria-hidden="true">
               <TemoignageCard t={t} />
             </div>
           ))}
