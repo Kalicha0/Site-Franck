@@ -866,8 +866,6 @@ function TemoignagesSection({ slug }: { slug: string }) {
   }
 
   // ≥ 2 témoignages : marquee horizontal infini avec fades latéraux + pause au survol
-  // Liste dupliquée pour boucler sans saut visible
-  const doubled = [...list, ...list];
   // Durée proportionnelle au nombre de cartes (≈ 12 s par carte, plage 28-60 s)
   const duration = Math.min(60, Math.max(28, list.length * 12));
 
@@ -885,6 +883,8 @@ function TemoignagesSection({ slug }: { slug: string }) {
           display: flex;
           gap: 24px;
           width: max-content;
+          /* Translation = largeur d'une séquence = 50% + moitié du gap (12px),
+             pour un loop mathématiquement seamless avec contenu dupliqué */
           animation: temo-scroll var(--temo-duration, 36s) linear infinite;
           will-change: transform;
         }
@@ -898,12 +898,25 @@ function TemoignagesSection({ slug }: { slug: string }) {
         }
         @keyframes temo-scroll {
           from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          to   { transform: translateX(calc(-50% - 12px)); }
         }
+        /* Accessibilité : pas d'animation et tous les témoignages restent visibles
+           dans une grille statique. Le doublon est masqué pour éviter les répétitions. */
         @media (prefers-reduced-motion: reduce) {
+          .temo-marquee-viewport {
+            overflow: visible;
+            -webkit-mask-image: none;
+                    mask-image: none;
+          }
           .temo-marquee-track {
             animation: none;
             transform: none;
+            width: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .temo-marquee-track [data-clone="true"] {
+            display: none;
           }
         }
       `}</style>
@@ -915,8 +928,13 @@ function TemoignagesSection({ slug }: { slug: string }) {
         style={{ ["--temo-duration" as string]: `${duration}s`, paddingTop: "8px", paddingBottom: "8px" }}
       >
         <div className="temo-marquee-track">
-          {doubled.map((t, i) => (
-            <TemoignageCard key={`${i}-${t.auteur}`} t={t} />
+          {list.map((t, i) => (
+            <TemoignageCard key={`o-${i}-${t.auteur}`} t={t} />
+          ))}
+          {list.map((t, i) => (
+            <div key={`c-${i}-${t.auteur}`} data-clone="true" aria-hidden="true" style={{ display: "contents" }}>
+              <TemoignageCard t={t} />
+            </div>
           ))}
         </div>
       </div>
