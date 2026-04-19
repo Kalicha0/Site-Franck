@@ -1145,6 +1145,9 @@ function SimpleProductPage({ product, related, slug }: {
         </div>
       </section>
 
+      {/* ── HÉBERGEMENT & NOURRITURE (stages uniquement) ── */}
+      {isStage && <HebergementNourritureSection />}
+
       {/* ── PRODUITS SIMILAIRES ── */}
       {related.length > 0 && (
         <section style={{ background: "#fff", padding: "56px 0", borderTop: `1px solid ${C3}` }}>
