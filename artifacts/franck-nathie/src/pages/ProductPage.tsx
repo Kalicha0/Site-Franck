@@ -837,7 +837,7 @@ function TemoignageCard({ t }: { t: { texte: string; auteur: string } }) {
       <div style={{ display: "flex", gap: "2px" }}>
         {[1, 2, 3, 4, 5].map((s) => <StarFill key={s} />)}
       </div>
-      <p style={{ fontSize: "13px", color: C8, fontStyle: "italic", lineHeight: 1.8, flex: 1, margin: 0 }}>
+      <p style={{ fontSize: "13px", color: C8, fontStyle: "italic", lineHeight: 1.8, margin: 0 }}>
         « {t.texte} »
       </p>
       <p style={{ fontSize: "12px", fontWeight: 700, color: ORA, margin: 0, paddingTop: "12px", borderTop: `1px solid ${C3}` }}>
@@ -881,6 +881,7 @@ function TemoignagesSection({ slug }: { slug: string }) {
         }
         .temo-marquee-track {
           display: flex;
+          align-items: flex-start;
           gap: 24px;
           width: max-content;
           /* Translation = largeur d'une séquence = 50% + moitié du gap (12px),
