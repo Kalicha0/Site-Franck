@@ -37,26 +37,27 @@ const BG_LES_PARTS       = "https://laforetnourriciere.org/wp-content/uploads/20
    - stages : pas de livraison, pas de satisfait ou remboursé → remplacés
    - therapie : pas de livraison → remplacé par visio + accompagnement
 */
-const TRUST_BADGES: Record<string, { icon: React.ReactNode; label: string }[]> = {
+const BADGE_BASE = `${import.meta.env.BASE_URL}badges/`;
+const TRUST_BADGES: Record<string, { icon: string; label: string }[]> = {
   jeux: [
-    { icon: "🔒", label: "Sécurisé" },
-    { icon: "🔄", label: "Satisfait ou remboursé" },
-    { icon: "📦", label: "Livraison soignée" },
+    { icon: "cadenas.svg", label: "Sécurisé" },
+    { icon: "retour.svg", label: "Satisfait ou remboursé" },
+    { icon: "colis.svg", label: "Livraison soignée" },
   ],
   posters: [
-    { icon: "🔒", label: "Sécurisé" },
-    { icon: "🔄", label: "Satisfait ou remboursé" },
-    { icon: "📦", label: "Livraison soignée" },
+    { icon: "cadenas.svg", label: "Sécurisé" },
+    { icon: "retour.svg", label: "Satisfait ou remboursé" },
+    { icon: "colis.svg", label: "Livraison soignée" },
   ],
   stages: [
-    { icon: "🔒", label: "Paiement sécurisé" },
-    { icon: "💚", label: "Bienveillance garantie" },
-    { icon: "🗓️", label: "Dates flexibles" },
+    { icon: "cadenas.svg", label: "Paiement sécurisé" },
+    { icon: "coeur-vert.svg", label: "Bienveillance garantie" },
+    { icon: "calendrier.svg", label: "Dates flexibles" },
   ],
   therapie: [
-    { icon: "🔒", label: "Paiement sécurisé" },
-    { icon: "💬", label: "Accompagnement personnalisé" },
-    { icon: "🎥", label: "Séance en visio" },
+    { icon: "cadenas.svg", label: "Paiement sécurisé" },
+    { icon: "bulle.svg", label: "Accompagnement personnalisé" },
+    { icon: "camera.svg", label: "Séance en visio" },
   ],
 };
 
@@ -65,8 +66,8 @@ function TrustBadges({ categorie }: { categorie: string }) {
   return (
     <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", paddingTop: "4px" }}>
       {badges.map((b, i) => (
-        <span key={i} style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "12px", color: MID }}>
-          <span style={{ color: ORA, display: "flex", alignItems: "center" }}>{b.icon}</span>
+        <span key={i} style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: MID }}>
+          <img src={`${BADGE_BASE}${b.icon}`} alt="" width={16} height={16} style={{ display: "block" }} />
           {b.label}
         </span>
       ))}
@@ -745,6 +746,78 @@ function EchecSection({ product }: { product: Product }) {
    bg: #f0ede8 (crème)
    Cards : bg blanc + ombre légère pour ressortir sur le fond crème
 */
+/* ══ HÉBERGEMENT & NOURRITURE — texte verbatim depuis laforetnourriciere.org ══ */
+function HebergementNourritureSection() {
+  return (
+    <section style={{ background: C1, padding: "70px 0" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "32px",
+          }}
+        >
+          {/* Hébergement */}
+          <div
+            style={{
+              background: C2,
+              border: `1px solid ${C3}`,
+              borderRadius: "8px",
+              padding: "40px 32px",
+              textAlign: "center",
+            }}
+          >
+            <p style={{ fontSize: "13px", letterSpacing: "0.12em", textTransform: "uppercase", color: ORA, fontWeight: 700, margin: 0 }}>
+              Hébergement
+            </p>
+            <p style={{ fontSize: "14px", color: MID, fontStyle: "italic", margin: "6px 0 18px" }}>
+              où dormir ?
+            </p>
+            <h3 style={{ fontFamily: "'Atma', cursive", fontSize: "26px", color: C8, margin: "0 0 14px", lineHeight: 1.25 }}>
+              Hébergement possible sur place
+            </h3>
+            <p style={{ fontSize: "15px", color: DARK_COL, margin: 0 }}>
+              <a
+                href="https://www.laforetnourriciere.org/infos-pratiques/"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: ORA, textDecoration: "underline" }}
+              >
+                Toutes les informations ici
+              </a>
+            </p>
+          </div>
+
+          {/* Nourriture */}
+          <div
+            style={{
+              background: C2,
+              border: `1px solid ${C3}`,
+              borderRadius: "8px",
+              padding: "40px 32px",
+              textAlign: "center",
+            }}
+          >
+            <p style={{ fontSize: "13px", letterSpacing: "0.12em", textTransform: "uppercase", color: ORA, fontWeight: 700, margin: 0 }}>
+              Nourriture
+            </p>
+            <p style={{ fontSize: "14px", color: MID, fontStyle: "italic", margin: "6px 0 18px" }}>
+              où manger ?
+            </p>
+            <h3 style={{ fontFamily: "'Atma', cursive", fontSize: "26px", color: C8, margin: "0 0 14px", lineHeight: 1.25 }}>
+              A vous de jouer !
+            </h3>
+            <p style={{ fontSize: "15px", color: DARK_COL, margin: 0, lineHeight: 1.6 }}>
+              Les repas sont sous forme d’auberge espagnole. Chacun apporte les aliments pour lui (notamment le café) et on cuisine et partage tout ensemble. Le frigo, la cuisinière, le four et les casseroles sont mis à disposition. Nous recommandons aux participants d’arriver avec leurs vivres pour les 3 jours du stage, a minima les premiers jours du stage pour éviter un aller-retour à la Biocoop
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function TemoignagesSection({ slug }: { slug: string }) {
   const list = TEMOIGNAGES[slug] ?? [];
   if (!list.length) return null;
@@ -1171,6 +1244,7 @@ export default function ProductPage() {
           <ProgrammeSection product={product} />
           <FormateurSection />
           <VaApporterSection product={product} />
+          <HebergementNourritureSection />
           <TemoignagesSection slug={slug} />
         </>
       )}
