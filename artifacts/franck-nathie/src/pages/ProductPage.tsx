@@ -818,35 +818,105 @@ function HebergementNourritureSection() {
   );
 }
 
+function TemoignageCard({ t }: { t: { texte: string; auteur: string } }) {
+  return (
+    <div
+      className="temo-card"
+      style={{
+        background: C1,
+        border: `1px solid ${C3}`,
+        borderRadius: "8px",
+        padding: "28px 28px 24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
+      }}
+    >
+      <div style={{ width: "36px", height: "3px", background: ORA, borderRadius: "2px" }} />
+      <div style={{ display: "flex", gap: "2px" }}>
+        {[1, 2, 3, 4, 5].map((s) => <StarFill key={s} />)}
+      </div>
+      <p style={{ fontSize: "13px", color: C8, fontStyle: "italic", lineHeight: 1.8, flex: 1, margin: 0 }}>
+        « {t.texte} »
+      </p>
+      <p style={{ fontSize: "12px", fontWeight: 700, color: ORA, margin: 0, paddingTop: "12px", borderTop: `1px solid ${C3}` }}>
+        — {t.auteur}
+      </p>
+    </div>
+  );
+}
+
 function TemoignagesSection({ slug }: { slug: string }) {
   const list = TEMOIGNAGES[slug] ?? [];
   if (!list.length) return null;
+
+  // 1 témoignage : affichage statique centré (pas de marquee à un seul élément)
+  if (list.length === 1) {
+    return (
+      <section style={{ background: C2, padding: "70px 0" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
+          <H2Orig>Témoignages</H2Orig>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", maxWidth: "640px", margin: "0 auto" }}>
+            <TemoignageCard t={list[0]} />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ≥ 2 témoignages : marquee horizontal infini avec fades latéraux + pause au survol
+  // Liste dupliquée pour boucler sans saut visible
+  const doubled = [...list, ...list];
+  // Durée proportionnelle au nombre de cartes (≈ 12 s par carte, plage 28-60 s)
+  const duration = Math.min(60, Math.max(28, list.length * 12));
+
   return (
-    <section style={{ background: C2, padding: "70px 0" }}>
+    <section style={{ background: C2, padding: "70px 0", overflow: "hidden" }}>
+      <style>{`
+        .temo-marquee-viewport {
+          position: relative;
+          overflow: hidden;
+          /* Fade latéral : transparent (10%) → opaque → opaque → transparent (10%) */
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+        }
+        .temo-marquee-track {
+          display: flex;
+          gap: 24px;
+          width: max-content;
+          animation: temo-scroll var(--temo-duration, 36s) linear infinite;
+          will-change: transform;
+        }
+        .temo-marquee-viewport:hover .temo-marquee-track {
+          animation-play-state: paused;
+        }
+        .temo-card {
+          flex: 0 0 auto;
+          width: 380px;
+          max-width: 85vw;
+        }
+        @keyframes temo-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .temo-marquee-track {
+            animation: none;
+            transform: none;
+          }
+        }
+      `}</style>
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
         <H2Orig>Témoignages</H2Orig>
-        <div style={{ display: "grid", gridTemplateColumns: list.length === 1 ? "1fr" : "repeat(2, 1fr)", gap: "24px" }}>
-          {list.map((t, i) => (
-            <div key={i} style={{
-              background: C1, border: `1px solid ${C3}`, borderRadius: "8px",
-              padding: "28px 28px 24px", display: "flex", flexDirection: "column", gap: "14px",
-              boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
-            }}>
-              {/* Accent orange en haut */}
-              <div style={{ width: "36px", height: "3px", background: ORA, borderRadius: "2px" }} />
-              {/* Étoiles */}
-              <div style={{ display: "flex", gap: "2px" }}>
-                {[1,2,3,4,5].map(s => <StarFill key={s} />)}
-              </div>
-              {/* Texte */}
-              <p style={{ fontSize: "13px", color: C8, fontStyle: "italic", lineHeight: 1.8, flex: 1, margin: 0 }}>
-                « {t.texte} »
-              </p>
-              {/* Auteur */}
-              <p style={{ fontSize: "12px", fontWeight: 700, color: ORA, margin: 0, paddingTop: "12px", borderTop: `1px solid ${C3}` }}>
-                — {t.auteur}
-              </p>
-            </div>
+      </div>
+      <div
+        className="temo-marquee-viewport"
+        style={{ ["--temo-duration" as string]: `${duration}s`, paddingTop: "8px", paddingBottom: "8px" }}
+      >
+        <div className="temo-marquee-track">
+          {doubled.map((t, i) => (
+            <TemoignageCard key={`${i}-${t.auteur}`} t={t} />
           ))}
         </div>
       </div>
