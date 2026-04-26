@@ -1,0 +1,821 @@
+{
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Communication, Authentique, Profonde et Transformative"
+    },
+    {
+      "type": "p",
+      "text": "Que ce soit professionnellement ou dans nos relations familiales et amicales, la communication avec les autres n’est pas toujours facile et passe bien souvent par des jugements qui amènent de la frustration et de la culpabilité de part et d’autre et aux conflits."
+    },
+    {
+      "type": "p",
+      "text": "Bien souvent, l’issue des conflits et tensions relationnelles débouche sur le fait que l’un des deux cède et se soumet pour avoir la paix, ou bien qu’aucun des deux ne cède et en arrive soit à la violence, soit à la séparation."
+    },
+    {
+      "type": "p",
+      "text": "La méthode CAPT est une évolution de la CNV (communication non violente) de Marshall Rosenberg. Après 20 ans de pratique, j’ai pu observer certaines lacunes de la méthode, que j’ai améliorée avec les autres outils que j’ai découverts (communication transformative – médiation et gestion du conflit, analyse transactionnelle, voir articles sur ces sujets)."
+    },
+    {
+      "type": "p",
+      "text": "Elle a pour objectif de mettre en place de nouveaux comportements, afin de changer de posture et de réflexes dans sa manière de communiquer. Lien vers le poster pédagogique CAPT à télécharger"
+    },
+    {
+      "type": "img",
+      "index": 1
+    },
+    {
+      "type": "h",
+      "level": 3,
+      "text": "À la découverte de la méthode CAPT"
+    },
+    {
+      "type": "p",
+      "text": "Pour que ce soit interactif, prenez le temps de réfléchir à une situation que vous avez pu vivre récemment, et dans laquelle la communication a été compliquée. Vous êtes sorti déçu de cet échange, et vous vous demandez comment vous auriez pu gérer différemment la question ?"
+    },
+    {
+      "type": "p",
+      "text": "Voici un résumé de la méthode CAPT, suivez la démarche pas à pas, en répondant aux questions à chaque étape."
+    },
+    {
+      "type": "p",
+      "text": "Pour illustrer le propos, je donnerai des exemples et je prendrai un exemple personnel de Marion qui a participé aux formations."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 1 : on est tous maladroits à combler des besoins fondamentaux légitimes."
+    },
+    {
+      "type": "img",
+      "index": 2
+    },
+    {
+      "type": "p",
+      "text": "Avant même de commencer à réfléchir à des solutions à un conflit ou une tension, la méthode CAPT invite à passer un contrat de bienveillance envers soi-même et envers l’autre : se rendre compte que nos comportements prennent leur origine dans des besoins fondamentaux non satisfaits. Et que nous ne sommes pas toujours très habiles ni à les communiquer clairement, ni à les combler par nous-mêmes !"
+    },
+    {
+      "type": "p",
+      "text": "Bien souvent on arrive dans un conflit avec comme posture de juger l’autre et de lui prêter de mauvaises intentions. On cherche en général à démontrer qui a tort ou qui a raison. Ou à l’inverse, on peut se juger soi-même et se positionner en “coupable” par nature."
+    },
+    {
+      "type": "p",
+      "text": "Avec cette posture intérieure de jugement, aucun outil de communication CNV-ESPER ne peut fonctionner car le ver de la violence est déjà à l’intérieur de la pomme (notre tête)."
+    },
+    {
+      "type": "p",
+      "text": "Accepter cet élément de départ “on est tous maladroits à combler de vrais besoins légitimes” permet d’aborder les tensions dans de meilleures dispositions, l’HUMILITÉ et la BIENVEILLANCE, et d’être prêt à aborder une situation tendue plus objectivement."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : Observer votre posture dans un conflit, est-ce que votre premier réflexe est de vous sentir coupable, de juger l’autre et de considérer que c’est lui le problème ?"
+    },
+    {
+      "type": "p",
+      "text": "Marion : J'avais clairement du mal à ne pas être dans le jugement, “Au moment du conflit sur le départ à l’école, je ne me suis pas posé de questions, pour moi j’avais raison et mes enfants ne faisaient pas d’efforts, voire même, il m’arrivait de croire qu’ils faisaient exprès de prendre leur temps pour que je m’énerve."
+    },
+    {
+      "type": "p",
+      "text": "Le fait de se dire à froid qu’on a chacun été maladroit a débloqué cette vision des choses, et m'a permis d’ouvrir un dialogue qu'on n'avait jamais eu avant avec mes enfants.”"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 2 : observer les faits, rien que les faits !"
+    },
+    {
+      "type": "img",
+      "index": 3
+    },
+    {
+      "type": "p",
+      "text": "Comme un chercheur, commencez par vous demander : quels sont les faits réels ? (sans les déformer, sans interprétation ni caricature, à la manière d’une caméra,)."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "La réalité, c’est ce qui est.",
+        "Ma vérité, c’est ce que j’ai vu objectivement de ce qui est.",
+        "La vérité, c’est ce que nous avons vu objectivement de ce qui est.",
+        "L’illusion, c’est ce que je crois sur ce que j'ai vu."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Ici la méthode CAPT cherche à sortir de l’illusion et on doit là encore faire appel à l’humilité pour accepter que l’autre lui aussi à souvent raison dans son angle de vue."
+    },
+    {
+      "type": "img",
+      "index": 4
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Observation objective de la réalité : hier, tu es arrivé avec 25 mn de retard et la semaine dernière avec 15 mn.",
+        "Observation subjective de la réalité : tu n’es jamais à l’heure !"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pour arriver à observer objectivement les faits, il faut se calmer, ralentir, ne pas rentrer dans des interprétations et les caricatures qui invitent l’autre à nous contredire avec une autre caricature."
+    },
+    {
+      "type": "p",
+      "text": "“Comme d’habitude, tu ne m'écoutes jamais !” De toute manière tu aimes ça râler, je n’y peux rien moi !!!"
+    },
+    {
+      "type": "p",
+      "text": "Deviendrait en mode objectif : “C’est fréquent que je ne me sente pas entendu par toi !” “Je te vois souvent râler et je me sens impuissant(e)."
+    },
+    {
+      "type": "p",
+      "text": "Le but à ce stade est d’être d’accord sur les faits observés. Si l’on n'est pas d’accord sur les faits, en général, le conflit est insoluble (l’un des deux pliera ou ce sera la guerre)."
+    },
+    {
+      "type": "p",
+      "text": "Il est donc fondamental de ne pas faire de caricature afin que notre interlocuteur puisse “être d’accord sur notre observation” et que nous aussi nous soyons d’accord sur ce que l’autre a observé…"
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : vous êtes-vous axé sur des faits, ou bien sur des interprétations et des caricatures de la situation ? Essayez de ne garder que les faits précis, mesurables, incontestables par l’autre."
+    },
+    {
+      "type": "p",
+      "text": "Marion : Les faits : “Après le petit déjeuner, je demande plusieurs fois aux enfants de se laver les dents et de préparer leur goûter pour aller à l'école. Ils ne me répondent pas. Au bout de 5 minutes, je vais les voir pour savoir où ils en sont, ils n'ont pas bougé. Je monte en pression et je leur dis, très énervée, d'aller vite se laver les dents. Ils le font, non sans avoir claqué plusieurs portes. Je leur prépare leur goûter pour ne pas être en retard. On ne se parle pas jusqu'au portail de l'école.” Tout le monde est énervé et frustré."
+    },
+    {
+      "type": "img",
+      "index": 5
+    },
+    {
+      "type": "p",
+      "text": "Observer objectivement les faits nous a permis de nous calmer, et de sortir des caricatures que l’on était en train de faire."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Moi “Comme d’habitude, ils ne m'écoutent jamais !”,",
+        "Eux “De toute façon tu ne nous laisses jamais rien faire !”."
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 3 : faire le lien entre les faits et ce que l’on ressent et en être responsable"
+    },
+    {
+      "type": "img",
+      "index": 6
+    },
+    {
+      "type": "p",
+      "text": "Nous sommes dans une société où l’on nie les sentiments, c’est donc assez rare qu’on y accorde de l’attention et encore plus rare que l’on partage aux autres ce que l’on ressent car c’est considéré comme une faiblesse et cela peut nous desservir."
+    },
+    {
+      "type": "p",
+      "text": "Pourtant nos sentiments sont les voyants du tableau de bord qui indiquent quand nos besoins sont satisfaits (quiétude, joie, calme), et quand ils ne sont pas satisfaits (inquiétude, tristesse, colère)."
+    },
+    {
+      "type": "h",
+      "level": 3,
+      "text": "Dans l’observation de ce que l’on ressent, il y a 3 erreurs à ne pas commettre."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Ne pas être propriétaire de nos sentiments : tu m'énerves, tu me rends triste, tu me déçois nous dépossède de ce que l’on vit. La réalité, c’est que “JE” m’énerve contre toi, “JE” suis triste, “JE” suis déçu. C’est important d’être propriétaire de nos ressentis pour avoir du pouvoir sur le fait de les modifier. Ce n’est pas le soleil qui t'a brûlé ou la pluie qui t’a mouillé, c’est toi qui n'as pas pris de sombrero ni de parapluie. On doit être 100 % responsable de nos sentiments.",
+        "Utiliser des jugements cachés : un vrai sentiment n’implique que nous-mêmes, un jugement caché implique une autre personne qui nous met dans une posture de victime (voir triangle de Karpman). Ex. : je me sens abandonnée, trahie, humiliée, abandonnée, rabaissée, etc. Si j’implique un autre dans mon ressenti, je n’en suis plus vraiment le propriétaire, je deviens le “sujet” de l’autre. (voir la liste des faux sentiments dans “C’est quoi la CNV”, “Les 12 blessures existentielles”)",
+        "Ne pas faire attention à son langage non verbal et à celui de l’autre : notre langage non verbal (tension, mimiques, intonation de voix, etc.) trahit ce qui se passe en nous et en l’autre. On peut utiliser le langage du corps à la place de celui des sentiments, qui passe souvent mieux que les sentiments. Exemple : “Je me sens tendu” au lieu de “Je me sens énervé ou irrité”.",
+        "Ne pas accorder d’attention à ce que ressent l’autre : si l’on veut que l’autre accorde de l’attention à nos sentiments, il faut montrer l’exemple en premier et en accorder aux siens. Si l’autre a du mal à dire ce qu’il ressent, on peut l’aider en lisant son langage non verbal : « Tu as l’air tendu, déçu, irrité, découragé, etc, je me trompe ? »."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Prendre l’entière responsabilité de nos émotions permet de prendre conscience que chacun réagit différemment, en fonction de ses intentions et de ses besoins."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : Quel était le sentiment ou les émotions que vous avez ressentis en lien avec ce qu’il s'est passé ? Êtes-vous capable d’accueillir le fait que c’était difficile à vivre pour l’autre aussi ? Avez-vous un sentiment en commun (se sentir seul, incompris, désemparé, déçu etc.) ?"
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Sur le moment, je me sentais vraiment tendue et en colère, j’avais la gorge nouée et envie de crier pour exprimer mon énervement. Après, je me suis sentie triste et déçue de moi-même, de ne pas avoir réussi à gérer sereinement la situation.”"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Les enfants étaient eux aussi très frustrés."
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 4 : Clarifier ses intentions et celles de l’autre"
+    },
+    {
+      "type": "img",
+      "index": 7
+    },
+    {
+      "type": "p",
+      "text": "Quelles étaient nos intentions en faisant ça (le conflit) ?"
+    },
+    {
+      "type": "p",
+      "text": "Cette phase est très importante pour se rendre compte de notre maladresse et de celle de l’autre à essayer de combler nos besoins, car bien souvent nos intentions sont aux antipodes du résultat que l’on obtient."
+    },
+    {
+      "type": "p",
+      "text": "Tu souhaites quoi en faisant/disant ça ? Moi, mon intention était de…"
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : quelle était votre intention ? Vous cherchiez à faire quoi ? Votre intention est-elle en adéquation avec le résultat, ou à côté de la plaque ?"
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Dans cette situation, mon intention profonde était que mes enfants soient à l’heure à l’école sans que j’aie à m’énerver, et que je me sente fière de moi en tant que maman qui assure son rôle. L’intention de mes garçons était d'avoir un temps de jeu avant de partir à l’école, de vivre à leur rythme d’enfant, bien loin du rythme imposé par notre rythme d’adulte.”"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 5 : mettre en lumière les besoins fondamentaux et les dissocier des désirs"
+    },
+    {
+      "type": "img",
+      "index": 8
+    },
+    {
+      "type": "p",
+      "text": "Quels besoins fondamentaux sont en jeu ?"
+    },
+    {
+      "type": "p",
+      "text": "La pyramide de Maslow, hiérarchise 5 besoins fondamentaux qui sont à la base de nos motivations profondes et de nos actions."
+    },
+    {
+      "type": "p",
+      "text": "Cela commence par les besoins les plus vitaux, en bas de la pyramide : besoins physiques et physiologiques (manger, boire, dormir, respirer, etc.). Viennent ensuite les besoins de sécurité et de protection (avoir un environnement stable, sans stress), les besoins d'affiliation et d'amour (appartenir à une famille, à un groupe), puis les besoins de confiance et d'estime (se respecter, être apprécié des autres), et enfin le besoin d'accomplissement, se réaliser soi, réaliser nos rêve et incarner notre unicité."
+    },
+    {
+      "type": "p",
+      "text": "Nous avons tous ces besoins en commun, par contre, chaque besoin sera comblé par diverses stratégies."
+    },
+    {
+      "type": "p",
+      "text": "Ex:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Nous avons tous besoin de manger des protéines. L’un va combler ce besoin par la stratégie “poulet au curry”, l’autre par un dal de lentilles corail.",
+        "On a tous besoin de sécurité matérielle : l’un va le combler en créant une épargne confortable, l’autre le comblera par l’ascétisme et le fait de ne rien posséder."
+      ]
+    },
+    {
+      "type": "img",
+      "index": 9
+    },
+    {
+      "type": "p",
+      "text": "Pourquoi est-il fondamental de différencier les vrais besoins des stratégies que l’on met en place inconsciemment pour les combler ?"
+    },
+    {
+      "type": "p",
+      "text": "Car on peut combler un besoin de mille façons, alors qu’une stratégie n’a qu’une seule possibilité (poulet ou lentille, épargne ou dépouillement matériel)."
+    },
+    {
+      "type": "p",
+      "text": "Donc si l’on veut des relations “gagnant/gagnant” constructives, il est important d’aller là où il y a 1000 solutions pour nous combler ensemble, plutôt qu’une seule où il y aura un gagnant et un perdant."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : essayez d’observer et d’identifier le vrai besoin qui se cache derrière votre intention (besoins de sens, de respect, d’efficacité, de douceur, d’accomplissement, de santé, de lien, d’autonomie, etc.)."
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Pour moi, il s'agissait d'un besoin de simplicité, de confiance et d’estime de moi en tant que maman, et d'un besoin de me sentir entendue.”"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pour le petit,c’était un besoin de dormir plus longtemps, besoin de douceur et de tendresse de ma part, et de sécurité (peur de se faire fâcher par l’enseignante pour avoir oublié un travail la veille).",
+        "Pour le grand, c’était un besoin d’autonomie, de faire ses propres choix et d’en assumer les conséquences."
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 6 : Chercher la stratégie gagnant/gagnant"
+    },
+    {
+      "type": "img",
+      "index": 10
+    },
+    {
+      "type": "p",
+      "text": "Après avoir mis à jour les intentions et les besoins de part et d’autre, c'est le moment d’observer si la stratégie que l’on met en place est adéquate (la nôtre et celle de l’autre). Peut-elle combler les besoins de chacun, ou était-elle à côté de la plaque ?"
+    },
+    {
+      "type": "p",
+      "text": "C’est une fois qu’on a constaté plusieurs fois à quel point nos stratégies sont à côté de la plaque que le point N°1 “On est tous maladroits à combler des besoins” prend toute sa profondeur."
+    },
+    {
+      "type": "p",
+      "text": "Cela se résume à la question :"
+    },
+    {
+      "type": "p",
+      "text": "Comment combler nos besoins, sans nuire aux besoins de l’autre ?"
+    },
+    {
+      "type": "p",
+      "text": "C'est à cet endroit précis que le mot “créativité” est indispensable. La créativité est infinie et quand on veut entretenir des relations évolutives, il y a un milLion de solutions pour un seul problème. Alors que si on est persuadé d’avoir raison, il n’y a qu’une solution, la mienne, ou la tienne."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : avez-vous imaginé que votre besoin et celui de l’autre puissent être comblés en même temps, ou bien de trouver 2 manières de combler les deux besoins sans qu’elles ne s’opposent ?"
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Nos stratégies sur le moment : elles ont consisté à s’énerver, élever la voix ou claquer les portes, et pour moi de préparer le goûter à la place des enfants pour gagner du temps. Cela n’a absolument pas comblé nos besoins ! Nous avons réfléchi ensemble à des stratégies qui nous conviendraient à tous les trois."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Le plus grand a souhaité construire un planning des tâches à effectuer le matin, avec des horaires clairs fixés ensemble, pour mieux se repérer.",
+        "Le plus jeune a mis en place des doudous aux endroits stratégiques de la maison pour qu’ils lui rappellent les tâches à effectuer, et leur faire des câlins pour se donner du courage."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Y en a-t-il un des deux qui se sente lésé ?"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 7 : faire des demandes claires et négociables"
+    },
+    {
+      "type": "img",
+      "index": 11
+    },
+    {
+      "type": "img",
+      "index": 12
+    },
+    {
+      "type": "p",
+      "text": "Comment poser clairement nos demandes ?"
+    },
+    {
+      "type": "p",
+      "text": "La plupart du temps, nous ne faisons pas de demande par peur qu’on nous dise non ou par peur de passer pour quelqu’un qui s’impose, et bien souvent, nous nous attendons à ce que l’autre comble nos besoins de manière intuitive."
+    },
+    {
+      "type": "p",
+      "text": "Et quand on ose faire une demande, souvent la formulation est confuse, ou annoncée de manière indirecte. “Je veux plus d’amour”, “je veux du respect ! Mais ce serait comment concrètement pour vous d’avoir plus d’amour ou de respect ? Il y a 5 façons d’exprimer l’amour, quel est votre langage de l’amour, comment voulez-vous être aimé ?"
+    },
+    {
+      "type": "p",
+      "text": "Et enfin, quand on fait enfin des demandes claires, elles sont souvent formulées comme des ordres et ce n’est pas vraiment négociable."
+    },
+    {
+      "type": "p",
+      "text": "On est tous uniques et on est les seuls à être dans notre tête ! Attendre que les autres nous comblent sans leur dire clairement ce que l’on souhaite voir comme changement est sans issue !"
+    },
+    {
+      "type": "p",
+      "text": "La manière de dire les choses est aussi essentielle pour que l’autre se sente respecté : attention aux injonctions (“je veux que tu fasses ceci tout de suite !”) et au ton utilisé (la demande “peux-tu s’il te plaît faire ceci” est juste dans les mots employés, mais elle devient un ordre si on montre des signes physiques d'impatience ou de colère, en haussant la voix ou en tapant du pied)."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : avez-vous osé faire une demande ? Etait-elle claire ? Et était-elle négociable ? Essayez d’imaginer une demande qui aurait été claire et négociable."
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Nous avons pris le temps de nous poser pour discuter tranquillement, et avons convenu ensemble des règles suivantes :"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Je ne répéterai plus les consignes plusieurs fois.",
+        "Je ferai mes demandes une seule fois.",
+        "Vous pouvez ensuite regarder le planning pour savoir si vous avez tout fait.",
+        "Nous partirons à l’heure prévue, et si vous n’avez pas pris le temps de préparer vos goûters/affaires, tant pis, nous partirons sans.\""
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Est-ce que vous trouvez ça juste ? Ils ont répondu oui tous les deux et on a commencé à expérimenter la nouvelle organisation."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 8 : Est-ce vraiment gagnant/gagnant entre nous ? Chercher l’équilibre entre donner et recevoir"
+    },
+    {
+      "type": "img",
+      "index": 13
+    },
+    {
+      "type": "p",
+      "text": "Pour que la relation soit juste, il faut chercher l'équilibre entre donner et recevoir : il s’agit là d’accéder aux besoins des autres, mais aussi d’assouvir les nôtres et de trouver l’équilibre entre les deux."
+    },
+    {
+      "type": "p",
+      "text": "La question à se poser : la stratégie mise en place est-elle gagnant/gagnant, ou l’un des deux est-il perdant ? Qui a à redire sur le compromis trouvé ?"
+    },
+    {
+      "type": "p",
+      "text": "Si vous commencez à intégrer qu’un être humain est une somme de parts complexes qui ne sont pas toujours en harmonie entre elles, vous devez vous dire : “Oui, mais quand je dis OUI, c’est quelle part de moi qui dit OUI ? Et est-ce qu’il y en a qui disent NON ?”"
+    },
+    {
+      "type": "p",
+      "text": "Il est impossible d’établir des relations saines quand on est gentil ! ? ! ?"
+    },
+    {
+      "type": "p",
+      "text": "Toutes les personnes qui ont eu des blessures intérieures qui les amènent à se soumettre et à être gentilles privilégient toujours la relation à leurs besoins. S’affirmer dans une relation de dominance est un danger si l’autre en face est rigide et menace de mettre fin à la relation ! Il est alors vital d’être souple et conciliant."
+    },
+    {
+      "type": "p",
+      "text": "Pour une personne “gentille”, s’affirmer et dire “moi, j’ai besoin de ça !” C'est être égoïste ! C’est la posture du méchant qui s’impose, et si l’autre en face n’est pas dans la négociation, la personne “gentille” risque à la fois de perdre la relation et en même temps de perdre son estime d’elle-même d’avoir été “pas gentille”. Même si elle en a marre de se soumettre aux autres, la peur d’être seule l’emporte."
+    },
+    {
+      "type": "p",
+      "text": "Il devient alors impossible de créer une relation “gagnant-gagnant” quand l’un des deux nie ses propres besoins et tire une forme d’avantage du déséquilibre."
+    },
+    {
+      "type": "p",
+      "text": "Dans son livre “Cessez d’être gentil, soyez vrais” Thomas d’Ansembourg, thérapeute et formateur en communication non violente et “ex-gentil”, illustre bien le côté tragique de la gentillesse et l’impossibilité d’établir des relations saines gagnant/gagnant avec des personnes qui y gagnent dans le fait de perdre."
+    },
+    {
+      "type": "img",
+      "index": 14
+    },
+    {
+      "type": "img",
+      "index": 15
+    },
+    {
+      "type": "p",
+      "text": "A l’inverse, les personnes qui ont des parts protectrices qui les rendent rigides et contrôlantes ont souvent pris l’habitude de créer des relations dominantes où elles y gagnent plus que l’autre."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : vous êtes-vous posé la question de l'équilibre entre votre demande et celle de l’autre ? Y en a-t-il un des deux qui se soumet ? Vous ou l’autre ? Lequel des deux se soumet d'habitude ?"
+    },
+    {
+      "type": "p",
+      "text": "Marion : C’était important que l’on sente que ce soit juste pour tout le monde. Au départ, le fait que les enfants pensaient qu’en tant que “grande” je faisais ce que je voulais les mettait dans une posture de “victime”, c’était moi la chef. Une fois qu’ils ont compris qu’aller au travail c’était comme l’école pour eux et que ma responsabilité de maman portait elle aussi son lot de frustration et de contrainte, nous sommes repartis sur une relation plus d’égal à égal."
+    },
+    {
+      "type": "p",
+      "text": "“Le compromis trouvé est qu’après quelques jours d’utilisation efficace de la méthode, on en arrive à un tableau d’organisation où chacun sait ce qu’il a fait en tant qu’enfant et que parent. De mon côté, j’ai réalisé que leur besoin d’enfants était légitime et, de leur côté, ils ont pris conscience que ma vie de maman n’était pas toujours facile et que souvent je m’en voulais et j’étais frustrée autant qu’eux."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Les enfants prennent le réflexe, dès le lever, de se prendre en main. Le lever se fait plus rapidement et en autonomie. Ils se réfèrent beaucoup aux horaires du planning en regardant l’heure, je n’ai plus à leur rappeler de se dépêcher."
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Une plage a été intégrée au planning pour qu’ils puissent jouer 15 minutes avant le départ, leur besoin de temps pour eux est comblé, et cela me permet de faire sereinement les autres tâches du matin, qui étaient jusqu’ici une corvée.",
+        "Ma confiance en eux se renforce, je vois qu’ils sont capables de faire leur part, et l’ambiance est beaucoup plus sereine : je les félicite au lieu de m’énerver contre eux , une révolution !!!",
+        "Bon, moi, personne ne me félicite mais je le fais toute seule, je suis assez fière de moi :) et je trouve que le compromis est équilibré entre nous et je suis ravie de trouver une solution à ces tensions qui ne faisaient que s’aggraver de jour en jour.",
+        "Je prends conscience à quel point mon ancienne façon de faire était stérile et ne pouvait que générer de la frustration pour tout le monde et que mes enfants ne faisaient que suivre et subir ce que je mettais en place inconsciemment."
+      ]
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 9 : Identifier les conflits structurels et les séparer des conflits interpersonnels"
+    },
+    {
+      "type": "img",
+      "index": 16
+    },
+    {
+      "type": "img",
+      "index": 17
+    },
+    {
+      "type": "p",
+      "text": "Cette étape de la méthode CAPT vient de Diana Leafe Christian, qui étudie les communautés, les écovillages et la gestion des conflits depuis près de 50 ans."
+    },
+    {
+      "type": "p",
+      "text": "C’est avec elle que j’ai découvert la différence entre les conflits structurels et les conflits interpersonnels. Elle insiste sur le fait que les conflits structurels sont insolubles et qu’il est important de clarifier les valeurs qui nous rassemblent avant de s’engager les uns envers les autres."
+    },
+    {
+      "type": "img",
+      "index": 18
+    },
+    {
+      "type": "h",
+      "level": 3,
+      "text": "Un conflit interpersonnel"
+    },
+    {
+      "type": "p",
+      "text": "C'est quand on va dans la même direction, que l’on est d’accord sur le “pourquoi” mais que nos blessures intérieures font que l’on arrive pas à se mettre d’accord sur le “comment” et que le voyage conflictuel finit par devenir infernal si on ne rectifie pas le tir."
+    },
+    {
+      "type": "p",
+      "text": "Le conflit interpersonnel peut mener à la rupture si les blessures ne sont pas guéries et les comportements rééquilibrés à temps. Si les deux ont l’humilité de se remettre en question et souhaitent guérir, alors leur différence redevient un tremplin dans leur évolution et la relation repart sur de nouvelles bases plus équilibrées."
+    },
+    {
+      "type": "img",
+      "index": 19
+    },
+    {
+      "type": "h",
+      "level": 3,
+      "text": "Le conflit structurel :"
+    },
+    {
+      "type": "p",
+      "text": "C’est quand nos valeurs et nos stratégies pour trouver notre équilibre sont tellement différentes que l’un nuit forcément à l’autre et vice versa."
+    },
+    {
+      "type": "p",
+      "text": "Le conflit structurel n’est pas soluble, sa seule issue positive est la séparation gagnant/gagnant où l’un et l’autre reconnaissent qu’ils ne sont pas compatibles et se quittent en bonne entente sans se juger."
+    },
+    {
+      "type": "p",
+      "text": "Quand le conflit est structurel et insoluble, la santé physique et mentale de celui qui cède peut être en jeu, la meilleure des choses à faire est la séparation, que ce soit de se séparer de son job, de son conjoint, de ses parents, de ses enfants. Quand c’est vital, c’est vital."
+    },
+    {
+      "type": "p",
+      "text": "Cela nous renvoie à nous et uniquement à nous et aux engagements que nous avons pris avec les autres (contrat d’entreprise, mariage, engagement parental, etc.) Et quand on est dans un conflit structurel qui impacte notre santé, il est important de revoir les engagements que l’on a pris, de les modifier ou de les rompre."
+    },
+    {
+      "type": "p",
+      "text": "Que ce soit dans le contexte amical, familial, professionnel, ou d’écovillages, la question reste la même : que partageons-nous ensemble ?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Allons-nous dans la même direction ou est-ce que l’un ou l’autre empêche l’un des deux de réaliser ce qui lui semble juste ?",
+        "Qu’est-ce que cette relation m’apporte et est-ce bénéfique ou dangereux pour moi de la maintenir ?"
+      ]
+    },
+    {
+      "type": "h",
+      "level": 3,
+      "text": "Les différents types d’interaction dans le vivant"
+    },
+    {
+      "type": "p",
+      "text": "Quel type de relation vivons-nous et voulons-nous ?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "L’interdépendance/le mutualisme : relation gagnant/gagnant et libre",
+        "La codépendance/la symbiose : relation gagnant/gagnant mais dépendants – fusionnels",
+        "L’assistanat/l’altruisme : perdant/gagnant, je sauve l’autre et ça me permet d’exister et de me sentir bien.",
+        "La dépendance/le parasitisme: gagnant/perdant, je coûte aux autres et leur apporte des problèmes."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Question pertinente à se poser."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Le conflit vient-il de nos blessures ou du fait que l’on ne va pas au même endroit dans nos vies ?",
+        "Dans quelle mesure je suis dépendant des autres pour réaliser mes rêves et est-ce leur chemin ??? Est-ce gagnant/gagnant pour eux comme pour moi ?",
+        "Dans quelle mesure les autres sont-ils dépendants de moi pour réaliser leur rêve et est-ce mon chemin de les suivre ??? Est-ce gagnant/gagnant ?",
+        "Le plus important serait quoi ? De rebâtir la relation sur du “gagnant/gagnant” ou bien de se séparer en cherchant à être gagnant/gagnant ?"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Parfois il ne peut y avoir de relation équilibrée gagnant/gagnant quand l’un des deux ne cherche pas cette posture et cherche à s’imposer, ou à se soumettre."
+    },
+    {
+      "type": "p",
+      "text": "Cela peut donner une relation."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Perdant/gagnant : je me soumets et je perds plus que l’autre (ex. : l’autre part avec les enfants, les meubles, la maison, etc.).",
+        "Gagnant/perdant : je m’impose et je perds moins que l’autre. (ex: c’est moi qui pars avec les enfants, la maison, etc.)",
+        "Perdant/perdant : les deux perdent (ex. : la maison est vendue pour payer les frais d’avocat, la garde des enfants coûte aux deux, etc.)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Quel que soit le choix que l’on fasse pour survivre quand une relation est toxique, l’important est de faire ces choix consciemment. Parfois il est préférable de perdre matériellement plutôt que de perdre la santé physique ou mentale à cause de la relation."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : Observez objectivement la relation dans laquelle vous vivez le conflit, que partagez-vous comme valeurs avec la ou les personnes ? Allez-vous dans la même direction ou dans des directions totalement différentes ? Dans quelle mesure les tensions entre vous sont-elles solubles grâce à un thérapeute ou un médiateur ? Est-ce qu’il peut y avoir un compromis qui serait juste pour vous et pour l’autre ?"
+    },
+    {
+      "type": "p",
+      "text": "Dans le cas de Marion, elle n’est pas en conflit structurel, elle aime ses enfants, ses enfants l’aiment, et le problème n’est pas la destination du navire, mais l’organisation de qui fait quoi, comment."
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Pour moi, le conflit était forcément interpersonnel car je sais pourquoi je voulais être maman. Je me rends compte que mes enfants me renvoient à une facette de moi “méchante” que je n’aime pas et c’est comme si j’étais piégée à être une maman qui gronde, alors que je suis douce de nature."
+    },
+    {
+      "type": "p",
+      "text": "Ça m’a amené à me poser la question de ma responsabilité dans l’accompagnement à l’autonomie de mes enfants."
+    },
+    {
+      "type": "p",
+      "text": "L’utilisation de méthode CAPT dans ce cas concret m’a permis de prendre du recul sur le quotidien, et de prendre conscience que dans mon souci de gérer au mieux le planning familial, je faisais beaucoup de choses à leur place en pensant gagner du temps, alors qu’ils pourraient les réaliser seuls et développer leur autonomie."
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Étape 10 : célébrer l’évolution, remercier le conflit et être 100 % responsable de ce que l’on vit"
+    },
+    {
+      "type": "img",
+      "index": 20
+    },
+    {
+      "type": "p",
+      "text": "On voit souvent les conflits et les tensions comme des problèmes qui ne devraient pas exister ! Pourtant les conflits sont juste l’expression “explosive et tragique” d’une évolution qui aurait pu se passer en douceur s'il y avait de l’humilité et de l’écoute de part et d’autre."
+    },
+    {
+      "type": "p",
+      "text": "Si l’on veut un jour que l’évolution se passe en douceur sans explosivité, aller vers le conflit est la seule voie pour évoluer vers ce chemin, soit de manière douce, soit de manière explosive."
+    },
+    {
+      "type": "p",
+      "text": "En pratique :"
+    },
+    {
+      "type": "p",
+      "text": "Pour le lecteur : ce conflit vous a obligatoirement fait prendre conscience de certains de vos besoins et de ceux de l’autre. Formuler cette phrase : “Grâce à ce conflit, je prends conscience de …………..” / “Ce conflit a permis de ………..”"
+    },
+    {
+      "type": "p",
+      "text": "Marion : “Pratiquer la méthode CAPT avec les enfants nous a permis d’imaginer une stratégie bénéfique pour chacun, et qui s’avère efficace ! Les tensions sont bien moindres depuis, et nous nous en félicitons tous les matins !”"
+    },
+    {
+      "type": "p",
+      "text": "Sans ce conflit de petit déjeuner, on n'aurait pas mis en place le planning d’organisation, je n’aurais pas pris conscience que mes enfants ne cherchaient pas à m’énerver le matin, mais juste à combler leurs besoins, ils n’auraient pas pris conscience qu’en tant que maman, c’était parfois difficile pour moi aussi (ils croyaient que je faisais ce que je voulais). Ce conflit nous a amenés à grandir tous les trois."
+    },
+    {
+      "type": "p",
+      "text": "Pour conclure : prenez un exemple d’un conflit que vous avez vécu qui n’a pas amené d’évolution dans votre vie. Si vous en trouvez un, c’est que vous ne voulez pas évoluer sur le sujet de ce conflit et vous risquez de le revivre indéfiniment. Sinon, la finalité de tous les conflits, c’est l’évolution."
+    },
+    {
+      "type": "p",
+      "text": "On peut voir les tensions dans nos vies comme un apprentissage qui nous amène à grandir."
+    },
+    {
+      "type": "p",
+      "text": "Si ces tensions sont traitées et composées, il n’y a que de l’évolution. Si, à l’inverse, elles ne sont pas traitées, cela devient le conflit,"
+    },
+    {
+      "type": "p",
+      "text": "Métaphore du compost"
+    },
+    {
+      "type": "p",
+      "text": "En tant qu’animaux sociaux, nous avons besoin de nourriture physique, mais aussi de nourriture émotionnelle et spirituelle. Si la relation (amour-tendresse-sexe-aide, etc.) était comparée au fait de se mettre à table et de manger (le côté doux de l’expérience), on pourrait comparer les tensions et les conflits (le côté dur) de la relation aux déchets de la relation (épluchures dans la cuisine, os dans l’assiette, vaisselle à faire, excréments à traiter)."
+    },
+    {
+      "type": "p",
+      "text": "Et on peut s’apercevoir que tous ces déchets ont une place merveilleuse dans le compost où dame Nature a tous les outils nécessaires pour les transformer en terre et en futur repas ou en fleur."
+    },
+    {
+      "type": "p",
+      "text": "À l’inverse, quand on fourre tous ces déchets sous le tapis et que l’on attend que ça se passe, il faut peu de temps pour qu’il y ait des mauvaises odeurs et du méthane explosif dans la relation."
+    },
+    {
+      "type": "p",
+      "text": "La méthode CAPT est un outil de compostage."
+    },
+    {
+      "type": "p",
+      "text": "Merci d’avoir lu cet article jusqu’au bout."
+    },
+    {
+      "type": "p",
+      "text": "Franck Nathié"
+    },
+    {
+      "type": "h",
+      "level": 2,
+      "text": "Petit récap des 10 points de CAPT"
+    },
+    {
+      "type": "p",
+      "text": "Un petit récap’ de la méthode, pour bien se la remettre en tête ?"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "On est tous maladroits à combler des besoins vitaux !!!",
+        "Il s'est passé quoi réellement ?",
+        "Je me sens comment avec ça ?",
+        "C’était quoi mon intention en faisant ça ?",
+        "J’aurais besoin de quoi et l’autre aurait besoin de quoi ?",
+        "Quelles stratégies seraient adaptées pour combler nos besoins ?",
+        "Mes demandes sont-elles claires et négociables ?",
+        "Est-ce que c’est gagnant / gagnant entre nous ?",
+        "Sommes-nous vraiment complémentaires ?",
+        "Merci à ce conflit de m’avoir fait prendre conscience de …"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La méthode CAPT, est avant tout pratique et le stage CAPT où un accompagnement personnalisé vous sera proposé pour appréhender et expérimenter ce cheminement."
+    },
+    {
+      "type": "p",
+      "text": "Télécharger le poster CAPT ici"
+    },
+    {
+      "type": "p",
+      "text": "Bonne expérimentation !"
+    }
+  ],
+  "images": {
+    "1": "img-01.jpg",
+    "2": "img-02.png",
+    "3": "img-03.png",
+    "4": "img-04.jpg",
+    "5": "img-05.png",
+    "6": "img-06.png",
+    "7": "img-07.png",
+    "8": "img-08.png",
+    "9": "img-09.png",
+    "10": "img-10.png",
+    "11": "img-11.png",
+    "12": "img-12.png",
+    "13": "img-13.png",
+    "14": "img-14.png",
+    "15": "img-15.jpg",
+    "16": "img-16.png",
+    "17": "img-17.png",
+    "18": "img-18.png",
+    "19": "img-19.png",
+    "20": "img-20.png"
+  }
+}

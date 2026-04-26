@@ -53,6 +53,15 @@ export const articles: Article[] = [
     href: null,
     active: false,
   },
+  {
+    id: 6,
+    slug: "methode-capt",
+    titre: "C’est quoi la méthode CAPT",
+    description:
+      "Communication, Authentique, Profonde et Transformative — une méthode en 10 étapes qui fait évoluer la CNV, pour transformer les conflits en opportunités de croissance relationnelle.",
+    href: "/articles/methode-capt",
+    active: true,
+  },
 ];
 
 export function searchArticles(query: string): Article[] {

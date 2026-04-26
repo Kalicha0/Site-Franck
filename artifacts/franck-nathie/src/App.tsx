@@ -8,6 +8,7 @@ import ComingSoon from "@/pages/ComingSoon";
 import QuiSuisJe from "@/pages/QuiSuisJe";
 import DPAEPage from "@/pages/DPAEPage";
 import ArticleBlessures from "@/pages/ArticleBlessures";
+import ArticleMethodeCAPT from "@/pages/ArticleMethodeCAPT";
 import ShopPage from "@/pages/ShopPage";
 import ProductPage from "@/pages/ProductPage";
 import SearchPage from "@/pages/SearchPage";
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/panier" component={() => <Layout><CartPage /></Layout>} />
       <Route path="/articles" component={() => <Layout><ComingSoon /></Layout>} />
       <Route path="/articles/blessures" component={() => <Layout><ArticleBlessures /></Layout>} />
+      <Route path="/articles/methode-capt" component={() => <Layout><ArticleMethodeCAPT /></Layout>} />
       <Route path="/articles/:sub" component={() => <Layout><ComingSoon /></Layout>} />
       <Route component={NotFound} />
     </Switch>
