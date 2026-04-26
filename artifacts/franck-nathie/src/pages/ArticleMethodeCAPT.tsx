@@ -64,10 +64,11 @@ function ArticleImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function StepHeading({ number, title }: { number: string; title: string }) {
+function StepHeading({ number, text }: { number: string; text: string }) {
   return (
     <div className="flex items-start gap-4 mb-6 mt-12">
       <div
+        aria-hidden="true"
         className="flex-shrink-0 w-12 h-12 rounded-full bg-[#E86B0A] text-white text-xl font-bold flex items-center justify-center shadow-md"
         style={{ fontFamily: "Atma, sans-serif" }}
       >
@@ -77,7 +78,7 @@ function StepHeading({ number, title }: { number: string; title: string }) {
         className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug"
         style={{ fontFamily: "Atma, sans-serif" }}
       >
-        {title}
+        {text}
       </h2>
     </div>
   );
@@ -141,11 +142,11 @@ function renderBlock(block: Block, key: number): React.ReactNode {
 
   if (block.type === "h") {
     const text = block.text;
-    const stepMatch = text.match(/^Étape\s*(\d+)\s*:\s*(.+)$/i);
+    const stepMatch = text.match(/^Étape\s*(\d+)\s*:/i);
     if (block.level === 2 && stepMatch) {
-      return (
-        <StepHeading key={key} number={stepMatch[1]} title={stepMatch[2]} />
-      );
+      // Render the FULL heading text verbatim inside the <h2>;
+      // the numeric badge is decorative only.
+      return <StepHeading key={key} number={stepMatch[1]} text={text} />;
     }
     if (block.level === 2) {
       return <PlainHeading key={key} text={text} />;
@@ -206,18 +207,6 @@ export default function ArticleMethodeCAPT() {
   };
 
   BLOCKS.forEach((block, i) => {
-    // The first body block is the literal expansion of CAPT
-    // ("Communication, Authentique, Profonde et Transformative"),
-    // already shown as the hero subtitle — skip to avoid duplication.
-    if (
-      i === 0 &&
-      block.type === "p" &&
-      /^Communication,\s*Authentique,\s*Profonde\s*et\s*Transformative$/i.test(
-        block.text.trim()
-      )
-    ) {
-      return;
-    }
     // Start a new animated group at every H2 (top-level section)
     if (block.type === "h" && block.level === 2) {
       flush();
