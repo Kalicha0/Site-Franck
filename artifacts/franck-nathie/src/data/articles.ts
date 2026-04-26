@@ -20,11 +20,11 @@ export const articles: Article[] = [
   {
     id: 2,
     slug: "soi-moi",
-    titre: "Comprendre le Moi et le Soi",
+    titre: "Différence entre le Moi et le Soi",
     description:
       "Qui est vraiment aux commandes de votre vie ? La DPEC distingue deux instances fondamentales de notre identité — et ce dialogue intérieur change tout.",
-    href: null,
-    active: false,
+    href: "/articles/soi-moi",
+    active: true,
   },
   {
     id: 3,
@@ -60,6 +60,15 @@ export const articles: Article[] = [
     description:
       "Communication, Authentique, Profonde et Transformative — une méthode en 10 étapes qui fait évoluer la CNV, pour transformer les conflits en opportunités de croissance relationnelle.",
     href: "/articles/methode-capt",
+    active: true,
+  },
+  {
+    id: 7,
+    slug: "ifs",
+    titre: "L’IFS Internal Family System",
+    description:
+      "La thérapie de Richard Schwartz : nous sommes habités par des parts (blessées, managers, pompiers) qui s’aiment ou se déchirent — et un Soi capable de devenir leur médiateur.",
+    href: "/articles/ifs",
     active: true,
   },
 ];

@@ -9,6 +9,8 @@ import QuiSuisJe from "@/pages/QuiSuisJe";
 import DPAEPage from "@/pages/DPAEPage";
 import ArticleBlessures from "@/pages/ArticleBlessures";
 import ArticleMethodeCAPT from "@/pages/ArticleMethodeCAPT";
+import ArticleSoiMoi from "@/pages/ArticleSoiMoi";
+import ArticleIFS from "@/pages/ArticleIFS";
 import ShopPage from "@/pages/ShopPage";
 import ProductPage from "@/pages/ProductPage";
 import SearchPage from "@/pages/SearchPage";
@@ -45,6 +47,8 @@ function Router() {
       <Route path="/articles" component={() => <Layout><ComingSoon /></Layout>} />
       <Route path="/articles/blessures" component={() => <Layout><ArticleBlessures /></Layout>} />
       <Route path="/articles/methode-capt" component={() => <Layout><ArticleMethodeCAPT /></Layout>} />
+      <Route path="/articles/soi-moi" component={() => <Layout><ArticleSoiMoi /></Layout>} />
+      <Route path="/articles/ifs" component={() => <Layout><ArticleIFS /></Layout>} />
       <Route path="/articles/:sub" component={() => <Layout><ComingSoon /></Layout>} />
       <Route component={NotFound} />
     </Switch>
