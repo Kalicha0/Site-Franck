@@ -63,16 +63,30 @@ function AnimSection({
   );
 }
 
+function ArticleImg({
+  src,
+  alt,
+  maxHeight = 480,
+}: {
+  src: string;
+  alt: string;
+  maxHeight?: number;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="rounded-xl shadow-md max-w-full"
+      style={{ maxHeight, objectFit: "contain" }}
+      loading="lazy"
+    />
+  );
+}
+
 function ArticleImage({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="my-8 flex justify-center">
-      <img
-        src={src}
-        alt={alt}
-        className="rounded-xl shadow-md max-w-full"
-        style={{ maxHeight: 480, objectFit: "contain" }}
-        loading="lazy"
-      />
+      <ArticleImg src={src} alt={alt} />
     </div>
   );
 }
@@ -84,13 +98,11 @@ function ImageRow({ indices }: { indices: number[] }) {
         const file = IMAGES[String(idx)];
         if (!file) return null;
         return (
-          <img
+          <ArticleImg
             key={idx}
             src={`${IMG_DIR}${file}`}
             alt={`Illustration ${idx} — méthode CAPT`}
-            className="rounded-xl shadow-md max-w-full"
-            style={{ maxHeight: 420, objectFit: "contain" }}
-            loading="lazy"
+            maxHeight={420}
           />
         );
       })}
@@ -325,7 +337,8 @@ export default function ArticleMethodeCAPT() {
             Article
           </p>
           <h1
-            className="text-4xl md:text-6xl font-bold leading-tight text-white"
+            id="article-top"
+            className="text-4xl md:text-6xl font-bold leading-tight text-white scroll-mt-24"
             style={{ fontFamily: "Atma, sans-serif" }}
           >
             C’est quoi la méthode CAPT
@@ -341,10 +354,7 @@ export default function ArticleMethodeCAPT() {
       </section>
 
       {/* Article body */}
-      <article
-        id="article-top"
-        className="max-w-3xl mx-auto px-6 py-16 scroll-mt-24"
-      >
+      <article className="max-w-3xl mx-auto px-6 py-16">
         <TableOfContents entries={TOC} />
         {grouped}
       </article>
