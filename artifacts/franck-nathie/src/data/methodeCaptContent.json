@@ -1,4 +1,19 @@
 {
+  "toc": [
+    { "label": "C’est quoi la méthode CAPT ?", "anchor": "article-top" },
+    { "label": "À la découverte de la méthode CAPT", "anchor": "a-la-decouverte-de-la-methode-capt" },
+    { "label": "Étape 1 : on est tous maladroits à combler des besoins fondamentaux légitimes.", "anchor": "etape-1-on-est-tous-maladroits-a-combler-des-besoins-fondamentaux-legitimes" },
+    { "label": "Étape 2 : observer les faits, rien que les faits !", "anchor": "etape-2-observer-les-faits-rien-que-les-faits" },
+    { "label": "Étape 3 : faire le lien entre les faits et ce que l’on ressent et en être responsable.", "anchor": "etape-3-faire-le-lien-entre-les-faits-et-ce-que-l-on-ressent-et-en-etre-responsable" },
+    { "label": "Dans l’observation de ce que l’on ressent, il y a 3 erreurs à ne pas commettre.", "anchor": "dans-l-observation-de-ce-que-l-on-ressent-il-y-a-3-erreurs-a-ne-pas-commettre" },
+    { "label": "Étape 4 : Clarifier ses intentions et celles de l’autre", "anchor": "etape-4-clarifier-ses-intentions-et-celles-de-l-autre" },
+    { "label": "Étape 5 : mettre en lumière les besoins fondamentaux et les dissocier des désirs.", "anchor": "etape-5-mettre-en-lumiere-les-besoins-fondamentaux-et-les-dissocier-des-desirs" },
+    { "label": "Étape 6 : Chercher la stratégie gagnant/gagnant.", "anchor": "etape-6-chercher-la-strategie-gagnant-gagnant" },
+    { "label": "Étape 9 : Identifier les conflits structurels et les séparer des conflits interpersonnels.", "anchor": "etape-9-identifier-les-conflits-structurels-et-les-separer-des-conflits-interpersonnels" },
+    { "label": "Un conflit interpersonnel", "anchor": "un-conflit-interpersonnel" },
+    { "label": "Le conflit structurel :", "anchor": "le-conflit-structurel" },
+    { "label": "Les différents types d’interaction dans le vivant", "anchor": "les-differents-types-d-interaction-dans-le-vivant" }
+  ],
   "blocks": [
     {
       "type": "p",
@@ -389,12 +404,8 @@
       "text": "Étape 7 : faire des demandes claires et négociables"
     },
     {
-      "type": "img",
-      "index": 11
-    },
-    {
-      "type": "img",
-      "index": 12
+      "type": "img-group",
+      "indices": [11, 12]
     },
     {
       "type": "p",
@@ -488,12 +499,8 @@
       "text": "Dans son livre “Cessez d’être gentil, soyez vrais” Thomas d’Ansembourg, thérapeute et formateur en communication non violente et “ex-gentil”, illustre bien le côté tragique de la gentillesse et l’impossibilité d’établir des relations saines gagnant/gagnant avec des personnes qui y gagnent dans le fait de perdre."
     },
     {
-      "type": "img",
-      "index": 14
-    },
-    {
-      "type": "img",
-      "index": 15
+      "type": "img-group",
+      "indices": [14, 15]
     },
     {
       "type": "p",
@@ -538,12 +545,8 @@
       "text": "Étape 9 : Identifier les conflits structurels et les séparer des conflits interpersonnels"
     },
     {
-      "type": "img",
-      "index": 16
-    },
-    {
-      "type": "img",
-      "index": 17
+      "type": "img-group",
+      "indices": [16, 17]
     },
     {
       "type": "p",

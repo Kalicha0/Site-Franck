@@ -5,12 +5,25 @@ type Block =
   | { type: "h"; level: number; text: string }
   | { type: "p"; text: string }
   | { type: "img"; index: number }
+  | { type: "img-group"; indices: number[] }
   | { type: "list"; ordered: boolean; items: string[] };
+
+type TocEntry = { label: string; anchor: string };
 
 const BASE = import.meta.env.BASE_URL;
 const IMG_DIR = `${BASE}articles/methode-capt/`;
 const IMAGES = (content as { images: Record<string, string> }).images;
 const BLOCKS = (content as { blocks: Block[] }).blocks;
+const TOC = (content as { toc?: TocEntry[] }).toc ?? [];
+
+function slug(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function useInView(threshold = 0.08) {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,9 +77,41 @@ function ArticleImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function StepHeading({ number, text }: { number: string; text: string }) {
+function ImageRow({ indices }: { indices: number[] }) {
   return (
-    <div className="flex items-start gap-4 mb-6 mt-12">
+    <div className="my-8 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+      {indices.map((idx) => {
+        const file = IMAGES[String(idx)];
+        if (!file) return null;
+        return (
+          <img
+            key={idx}
+            src={`${IMG_DIR}${file}`}
+            alt={`Illustration ${idx} — méthode CAPT`}
+            className="rounded-xl shadow-md max-w-full"
+            style={{ maxHeight: 420, objectFit: "contain" }}
+            loading="lazy"
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function StepHeading({
+  number,
+  text,
+  id,
+}: {
+  number: string;
+  text: string;
+  id: string;
+}) {
+  return (
+    <div
+      id={id}
+      className="flex items-start gap-4 mb-6 mt-12 scroll-mt-24"
+    >
       <div
         aria-hidden="true"
         className="flex-shrink-0 w-12 h-12 rounded-full bg-[#E86B0A] text-white text-xl font-bold flex items-center justify-center shadow-md"
@@ -84,10 +129,11 @@ function StepHeading({ number, text }: { number: string; text: string }) {
   );
 }
 
-function PlainHeading({ text }: { text: string }) {
+function PlainHeading({ text, id }: { text: string; id: string }) {
   return (
     <h2
-      className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 mt-12"
+      id={id}
+      className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 mt-12 scroll-mt-24"
       style={{ fontFamily: "Atma, sans-serif" }}
     >
       {text}
@@ -95,10 +141,11 @@ function PlainHeading({ text }: { text: string }) {
   );
 }
 
-function SubHeading({ text }: { text: string }) {
+function SubHeading({ text, id }: { text: string; id: string }) {
   return (
     <h3
-      className="text-xl md:text-2xl font-semibold text-[#091b18] mb-3 mt-8"
+      id={id}
+      className="text-xl md:text-2xl font-semibold text-[#091b18] mb-3 mt-8 scroll-mt-24"
       style={{ fontFamily: "Atma, sans-serif" }}
     >
       {text}
@@ -127,6 +174,37 @@ function PracticeLabel({ text }: { text: string }) {
   );
 }
 
+function TableOfContents({ entries }: { entries: TocEntry[] }) {
+  if (entries.length === 0) return null;
+  return (
+    <AnimSection>
+      <nav
+        aria-label="Table des matières"
+        className="mb-12 bg-[#f0ede8] rounded-2xl p-6 md:p-8 shadow-sm"
+      >
+        <h2
+          className="text-xl md:text-2xl font-bold text-[#E86B0A] mb-4"
+          style={{ fontFamily: "Atma, sans-serif" }}
+        >
+          Sommaire
+        </h2>
+        <ol className="list-decimal pl-6 space-y-2 text-gray-700 leading-relaxed">
+          {entries.map((entry, i) => (
+            <li key={i}>
+              <a
+                href={`#${entry.anchor}`}
+                className="hover:text-[#E86B0A] hover:underline transition-colors"
+              >
+                {entry.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </AnimSection>
+  );
+}
+
 function renderBlock(block: Block, key: number): React.ReactNode {
   if (block.type === "img") {
     const file = IMAGES[String(block.index)];
@@ -140,18 +218,25 @@ function renderBlock(block: Block, key: number): React.ReactNode {
     );
   }
 
+  if (block.type === "img-group") {
+    return <ImageRow key={key} indices={block.indices} />;
+  }
+
   if (block.type === "h") {
     const text = block.text;
+    const id = slug(text);
     const stepMatch = text.match(/^Étape\s*(\d+)\s*:/i);
     if (block.level === 2 && stepMatch) {
       // Render the FULL heading text verbatim inside the <h2>;
       // the numeric badge is decorative only.
-      return <StepHeading key={key} number={stepMatch[1]} text={text} />;
+      return (
+        <StepHeading key={key} number={stepMatch[1]} text={text} id={id} />
+      );
     }
     if (block.level === 2) {
-      return <PlainHeading key={key} text={text} />;
+      return <PlainHeading key={key} text={text} id={id} />;
     }
-    return <SubHeading key={key} text={text} />;
+    return <SubHeading key={key} text={text} id={id} />;
   }
 
   if (block.type === "list") {
@@ -256,7 +341,13 @@ export default function ArticleMethodeCAPT() {
       </section>
 
       {/* Article body */}
-      <article className="max-w-3xl mx-auto px-6 py-16">{grouped}</article>
+      <article
+        id="article-top"
+        className="max-w-3xl mx-auto px-6 py-16 scroll-mt-24"
+      >
+        <TableOfContents entries={TOC} />
+        {grouped}
+      </article>
     </main>
   );
 }
