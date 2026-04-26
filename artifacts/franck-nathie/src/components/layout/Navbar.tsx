@@ -71,6 +71,9 @@ const navItems = [
 
 const LIVE_ROUTES = new Set([
   "/articles/blessures",
+  "/articles/soi-moi",
+  "/articles/ifs",
+  "/articles/methode-capt",
   "/qui-suis-je",
   "/dpae",
   "/boutique",
