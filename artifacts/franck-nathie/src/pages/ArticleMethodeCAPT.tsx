@@ -120,10 +120,7 @@ function StepHeading({
   id: string;
 }) {
   return (
-    <div
-      id={id}
-      className="flex items-start gap-4 mb-6 mt-12 scroll-mt-24"
-    >
+    <div className="flex items-start gap-4 mb-6 mt-12 scroll-mt-24">
       <div
         aria-hidden="true"
         className="flex-shrink-0 w-12 h-12 rounded-full bg-[#E86B0A] text-white text-xl font-bold flex items-center justify-center shadow-md"
@@ -132,7 +129,8 @@ function StepHeading({
         {number}
       </div>
       <h2
-        className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug"
+        id={id}
+        className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug scroll-mt-24"
         style={{ fontFamily: "Atma, sans-serif" }}
       >
         {text}
